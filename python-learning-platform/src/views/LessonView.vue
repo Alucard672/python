@@ -1004,8 +1004,30 @@ onMounted(() => {
   height: 100vh;
 }
 
+/* 移动端优化：改为纵向布局，移除最小宽度限制，避免首屏卡死 */
+@media (max-width: 768px) {
+  .lesson-content {
+    display: flex;            /* 从 grid 切换为 flex */
+    flex-direction: column;   /* 纵向排列 */
+    min-height: 0;
+  }
+
+  .content-panel {
+    width: 100%;
+    border-right: none;
+    min-width: auto;          /* 移除 400px 最小宽度限制 */
+    height: auto;
+  }
+
+  .editor-panel {
+    min-height: 60vh;         /* 降低编辑器最小高度以适配手机屏幕 */
+  }
+}
+
+/* 平板适配：保留原断点，但明确为 flex 以保证生效 */
 @media (max-width: 1200px) {
   .lesson-content {
+    display: flex;
     flex-direction: column;
   }
 

@@ -45,8 +45,11 @@ body {
 }
 
 #app {
-  height: 100vh;
-  overflow: hidden;
+  /* 使用移动安全视区高度，避免移动浏览器地址栏影响 */
+  min-height: 100svh;
+  height: auto;
+  /* 允许页面滚动，避免手机端被锁死在首屏 */
+  overflow: auto;
 }
 
 /* 全局滚动条样式 */
