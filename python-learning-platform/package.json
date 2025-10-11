@@ -10,6 +10,9 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
+    "build:local": "vite build --base=/",
+    "build:prod": "vite build --base=/python/",
+    "serve:dist": "python3 -m http.server 5050 --directory dist"
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
