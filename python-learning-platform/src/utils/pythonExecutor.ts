@@ -59,10 +59,14 @@ export class PythonExecutor {
       }
     }
 
-    // 加载顺序：若本地可用或被强制，则先本地，否则直接走 CDN 列表
+    // 加载顺序：默认仅使用 CDN；仅当显式设置 VITE_PYODIDE_LOCAL=true 时才尝试本地（并通过严格探测）
     let loaded = false
-    if (forceLocal || await localAvailable()) {
-      loaded = await tryLoad(localBase)
+    if (forceLocal) {
+      if (await localAvailable()) {
+        loaded = await tryLoad(localBase)
+      } else {
+        console.warn('本地 /pyodide/ 不可用，跳过，使用 CDN')
+      }
     }
     if (!loaded) {
       for (const url of cdnCandidates) {
