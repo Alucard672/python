@@ -74,78 +74,7 @@
                 </div>
               </div>
 
-              <!-- 自测题（如果存在则渲染） -->
-              <div class="section-card" v-if="currentLesson.selfQuiz && currentLesson.selfQuiz.length">
-                <div class="section-header">
-                  <h3>📝 自测题</h3>
-                </div>
-                <div class="section-content">
-                  <div class="quiz-list">
-                    <div class="quiz-item" v-for="q in currentLesson.selfQuiz" :key="q.id">
-                      <div class="quiz-question">
-                        {{ q.question }}
-                        <el-tag size="small" type="info" class="quiz-type" v-if="q.type">
-                          {{ q.type === 'single' ? '单选' : (q.type === 'multi' ? '多选' : '判断') }}
-                        </el-tag>
-                      </div>
 
-                      <!-- 选项区：根据题型渲染（使用原生表单控件，避免依赖组件库注册） -->
-                      <div class="quiz-controls" v-if="q.type === 'single' && q.options?.length">
-                        <label v-for="opt in q.options" :key="opt" style="margin-right:12px; display:inline-flex; align-items:center; gap:6px;">
-                          <input 
-                            type="radio" 
-                            :name="'q_'+q.id" 
-                            :value="opt" 
-                            v-model="quizResponses[q.id]" 
-                          />
-                          <span>{{ opt }}</span>
-                        </label>
-                      </div>
-
-                      <div class="quiz-controls" v-else-if="q.type === 'multi' && q.options?.length">
-                        <label v-for="opt in q.options" :key="opt" style="margin-right:12px; display:inline-flex; align-items:center; gap:6px;">
-                          <input 
-                            type="checkbox" 
-                            :value="opt" 
-                            v-model="quizResponses[q.id]" 
-                          />
-                          <span>{{ opt }}</span>
-                        </label>
-                      </div>
-
-                      <div class="quiz-controls" v-else>
-                        <label style="margin-right:12px; display:inline-flex; align-items:center; gap:6px;">
-                          <input type="radio" :name="'q_'+q.id" :value="true" v-model="quizResponses[q.id]" />
-                          <span>True</span>
-                        </label>
-                        <label style="display:inline-flex; align-items:center; gap:6px;">
-                          <input type="radio" :name="'q_'+q.id" :value="false" v-model="quizResponses[q.id]" />
-                          <span>False</span>
-                        </label>
-                      </div>
-
-                      <!-- 操作与反馈 -->
-                      <div class="quiz-actions">
-                        <el-button size="small" type="primary" @click.stop="submitQuiz(q)">判分</el-button>
-                        <el-tag v-if="quizResults[q.id] === true" size="small" type="success">正确</el-tag>
-                        <el-tag v-else-if="quizResults[q.id] === false" size="small" type="danger">错误</el-tag>
-                      </div>
-
-                      <!-- 解析（作答后展示） -->
-                      <div class="quiz-explain" v-if="quizResults[q.id] !== undefined && q.explanation">
-                        <el-tag size="small" type="warning">解析</el-tag>
-                        <span>{{ q.explanation }}</span>
-                      </div>
-                    </div>
-
-                    <!-- 总体操作 -->
-                    <div class="quiz-overall-actions">
-                      <el-button size="small" type="success" @click="submitAllQuiz">全部判分</el-button>
-                      <el-button size="small" @click="clearAllQuiz" text>清空作答</el-button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </el-tab-pane>
           
