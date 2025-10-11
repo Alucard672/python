@@ -13,35 +13,39 @@ export class PythonExecutor {
     // 读取 Vite 环境变量（在非 Vite/SSR 环境容错）
     let baseUrl: string = '/'
     let forceLocal = false
+    let appVersion = 'dev'
     try {
       const env = (import.meta as any)?.env || {}
       baseUrl = (env.BASE_URL as string) || '/'
-      forceLocal = env.VITE_PYODIDE_LOCAL === 'true'
+      // 仅当明确为字符串 'true' 才启用本地
+      forceLocal = (env.VITE_PYODIDE_LOCAL as string) === 'true'
+      appVersion = (env.VITE_APP_VERSION as string) || (env.VITE_GIT_COMMIT as string) || 'dev'
     } catch {}
     const localBase = `${baseUrl.replace(/\/+$/, '')}/pyodide/`
 
+    // 输出关键信息以便排查
+    try {
+      console.log('[PyExecutor] version=', appVersion, 'baseUrl=', baseUrl, 'forceLocal=', forceLocal)
+    } catch {}
     // CDN 回退列表（固定到 0.28.3 full/ 路径）
     const cdnCandidates = [
       'https://cdn.jsdelivr.net/pyodide/v0.28.3/full/',
       'https://unpkg.com/pyodide@0.28.3/full/'
     ]
 
-    // 预检本地资源是否存在，避免请求 404 返回 HTML 造成二次错误
+    // 仅在 forceLocal 为 true 时才声明与调用本地探测函数
     const localAvailable = async (): Promise<boolean> => {
       try {
         const res = await fetch(`${localBase}pyodide.json`, {
           method: 'GET',
           headers: { 'Accept': 'application/json' },
-          // 避免缓存导致的错误类型命中
           cache: 'no-store' as RequestCache
         })
         if (!res.ok) return false
         const ct = (res.headers.get('content-type') || '').toLowerCase()
         if (!ct.includes('application/json')) return false
-        // 尝试解析，确保不是返回的 HTML
         const data = await res.json().catch(() => null)
-        if (!data || typeof data !== 'object') return false
-        return true
+        return !!data && typeof data === 'object'
       } catch {
         return false
       }
@@ -59,13 +63,15 @@ export class PythonExecutor {
       }
     }
 
-    // 加载顺序：默认仅使用 CDN；仅当显式设置 VITE_PYODIDE_LOCAL=true 时才尝试本地（并通过严格探测）
+    // 加载顺序：默认仅使用 CDN；仅当显式设置 VITE_PYODIDE_LOCAL==='true' 时才尝试本地
     let loaded = false
-    if (forceLocal) {
-      if (await localAvailable()) {
+    if (forceLocal === true) {
+      const ok = await localAvailable()
+      console.log('[PyExecutor] probe local /pyodide/ =>', ok)
+      if (ok) {
         loaded = await tryLoad(localBase)
       } else {
-        console.warn('本地 /pyodide/ 不可用，跳过，使用 CDN')
+        console.warn('[PyExecutor] 本地 /pyodide/ 不可用，改用 CDN')
       }
     }
     if (!loaded) {
