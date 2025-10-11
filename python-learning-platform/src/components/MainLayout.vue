@@ -1,7 +1,12 @@
 <template>
   <div class="main-layout">
+    <!-- 移动端顶部栏：汉堡按钮与标题 -->
+    <header class="mobile-header">
+      <button class="hamburger" @click="mobileNavOpen = !mobileNavOpen" aria-label="切换导航">☰</button>
+      <h1 class="app-title">Python学习平台</h1>
+    </header>
     <!-- 左侧导航栏 -->
-    <aside class="sidebar">
+    <aside class="sidebar" :class="{ 'sidebar--mobile-open': mobileNavOpen }">
       <div class="sidebar-header">
         <h1 class="logo">
           <span class="logo-icon">🐍</span>
@@ -71,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Document, EditPen } from '@element-plus/icons-vue'
 import { courses } from '@/data/courses'
@@ -81,6 +86,14 @@ const route = useRoute()
 
 const activeMenu = ref('')
 const completedLessonsSet = ref(new Set<string>())
+
+// 移动端导航抽屉状态与窗口变化处理
+const mobileNavOpen = ref(false)
+function handleResize() {
+  if (window.innerWidth > 768) {
+    mobileNavOpen.value = false
+  }
+}
 
 // 计算总课程数
 const totalLessons = computed(() => {
@@ -138,6 +151,13 @@ const updateActiveMenu = () => {
 onMounted(() => {
   loadCompletedLessons()
   updateActiveMenu()
+})
+// 监听窗口尺寸变化以收敛抽屉
+onMounted(() => {
+  window.addEventListener('resize', handleResize)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize)
 })
 
 // 暴露方法给子组件使用
@@ -254,16 +274,64 @@ defineExpose({
   background: #ffffff;
 }
 
-/* 响应式设计 */
+/* 移动端顶部栏样式 */
+.mobile-header {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: #fff;
+  border-bottom: 1px solid #ebeef5;
+  padding: 8px 12px;
+}
+.hamburger {
+  appearance: none;
+  border: 1px solid #dcdfe6;
+  background: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.app-title {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* 响应式设计：移动端抽屉导航与顶部栏 */
 @media (max-width: 768px) {
-  .sidebar {
-    width: 280px;
+  .main-layout {
+    display: block;
+    min-height: 100svh;
   }
-  
+  .mobile-header {
+    display: block;
+  }
+  .sidebar {
+    position: fixed;
+    top: 48px; /* 预留给移动顶部栏 */
+    left: 0;
+    width: 80%;
+    max-width: 280px;
+    height: calc(100svh - 48px);
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform: translateX(-100%);
+    transition: transform .2s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sidebar.sidebar--mobile-open {
+    transform: translateX(0);
+  }
+
   .logo {
     font-size: 16px;
   }
-  
   .lesson-title {
     font-size: 12px;
   }
