@@ -31,6 +31,13 @@ for title in titles:
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-1-1', type: 'single', question: 'requests.get 常用参数不包括？', options: ['timeout','headers','gpu'], answer: 'gpu', explanation: 'requests 针对 HTTP，不涉及 GPU' },
+        { id: 'q5-1-2', type: 'single', question: 'BeautifulSoup 查找所有 h1 标签用？', options: ['soup.select("h1")','soup.find_all("h1")','soup.h1s()'], answer: 'soup.find_all("h1")', explanation: 'find_all 返回列表' },
+        { id: 'q5-1-3', type: 'judge', question: '解析 HTML 建议使用 html.parser 或 lxml 等解析器', answer: true, explanation: '需指定解析器确保稳定性' },
+        { id: 'q5-1-4', type: 'single', question: '应对反爬的常见做法？', options: ['增大并发无限制','设置合理 UA/延时','无视网站规则'], answer: '设置合理 UA/延时', explanation: '遵守对方规则与限速' },
+        { id: 'q5-1-5', type: 'judge', question: '抓取后需进行数据清洗与去重', answer: true, explanation: '保证数据质量' }
+      ],
       summary: '网络爬虫是自动化数据收集的重要工具'
     },
     {
@@ -59,6 +66,13 @@ root.mainloop()`,
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-2-1', type: 'single', question: '按钮点击的回调通过哪个参数绑定？', options: ['action','command','onclick'], answer: 'command', explanation: 'Button(command=...) 指定回调' },
+        { id: 'q5-2-2', type: 'single', question: '布局中最常用的三个管理器是？', options: ['pack/grid/place','row/col/flex','top/left/right'], answer: 'pack/grid/place', explanation: 'Tkinter 提供三种布局管理' },
+        { id: 'q5-2-3', type: 'judge', question: '主事件循环由 mainloop 启动', answer: true, explanation: 'GUI 事件驱动' },
+        { id: 'q5-2-4', type: 'single', question: '获取 Entry 文本使用？', options: ['entry.text','entry.read()','entry.get()'], answer: 'entry.get()', explanation: 'Entry 提供 get 方法' },
+        { id: 'q5-2-5', type: 'judge', question: 'UI 线程中应避免耗时操作以免卡顿', answer: true, explanation: '耗时任务可放到线程/异步中' }
+      ],
       summary: 'Tkinter让Python程序拥有图形界面'
     },
     {
@@ -87,6 +101,13 @@ def read_item(item_id: int):
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-3-1', type: 'single', question: 'FastAPI 创建应用的入口类？', options: ['Flask','FastAPI','Django'], answer: 'FastAPI', explanation: 'from fastapi import FastAPI' },
+        { id: 'q5-3-2', type: 'single', question: '路径参数声明方式？', options: ['/items/<id>','/items/{id}','/items/:id'], answer: '/items/{id}', explanation: 'FastAPI 使用花括号' },
+        { id: 'q5-3-3', type: 'judge', question: '可以通过类型注解自动生成文档', answer: true, explanation: 'OpenAPI/Swagger 文档' },
+        { id: 'q5-3-4', type: 'single', question: '返回 JSON 的默认方式？', options: ['return dict','jsonify','Response.json(...)'], answer: 'return dict', explanation: 'FastAPI 自动序列化' },
+        { id: 'q5-3-5', type: 'judge', question: '应为路由添加方法限定与校验', answer: true, explanation: '保障接口语义与安全' }
+      ],
       summary: 'FastAPI是现代Python Web API开发的首选框架'
     },
     {
@@ -114,6 +135,13 @@ def backup_files(source, destination):
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-4-1', type: 'single', question: '批量处理文件建议使用？', options: ['手动逐个处理','循环遍历+分类','GUI 操作'], answer: '循环遍历+分类', explanation: '自动化提升效率' },
+        { id: 'q5-4-2', type: 'single', question: '拷贝目录常用？', options: ['os.copytree','shutil.copytree','pathlib.copytree'], answer: 'shutil.copytree', explanation: '标准库提供目录拷贝' },
+        { id: 'q5-4-3', type: 'judge', question: '谨慎对目录执行写操作并做好备份', answer: true, explanation: '避免数据丢失' },
+        { id: 'q5-4-4', type: 'single', question: '自动化脚本常见的调度方式？', options: ['手动执行','定时任务','邮件触发'], answer: '定时任务', explanation: '如 cron/schedule' },
+        { id: 'q5-4-5', type: 'judge', question: '路径拼接推荐使用 pathlib 或 os.path', answer: true, explanation: '增强跨平台性' }
+      ],
       summary: '自动化脚本大大提高工作效率'
     },
     {
@@ -142,6 +170,13 @@ print(f"预测结果: {prediction[0]}")`,
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-5-1', type: 'single', question: '线性回归拟合方法？', options: ['fit','train','run'], answer: 'fit', explanation: 'sklearn API 统一使用 fit' },
+        { id: 'q5-5-2', type: 'single', question: '预测使用？', options: ['model.eval','model.predict','model.go'], answer: 'model.predict', explanation: '预测接口' },
+        { id: 'q5-5-3', type: 'judge', question: '特征缩放可提升一些模型的效果与收敛', answer: true, explanation: '如标准化/归一化' },
+        { id: 'q5-5-4', type: 'single', question: '常见的回归评估指标不包括？', options: ['MSE','MAE','AUC'], answer: 'AUC', explanation: 'AUC 常用于分类' },
+        { id: 'q5-5-5', type: 'judge', question: '训练与测试数据应分开', answer: true, explanation: '避免过拟合' }
+      ],
       summary: '机器学习让程序具备预测能力'
     },
     {
@@ -169,6 +204,13 @@ resized.save('resized.jpg')`,
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-6-1', type: 'single', question: 'PIL 打开图像使用？', options: ['Image.open','Image.read','Image.load'], answer: 'Image.open', explanation: '基础 API' },
+        { id: 'q5-6-2', type: 'single', question: '调整大小使用？', options: ['resize','rescale','scale_to'], answer: 'resize', explanation: 'Image.resize((w,h))' },
+        { id: 'q5-6-3', type: 'judge', question: '保存图像可指定不同格式后缀', answer: true, explanation: '根据扩展名确定编码' },
+        { id: 'q5-6-4', type: 'single', question: '读取像素与写入像素方法？', options: ['getpixel/putpixel','read/write','pixel()',], answer: 'getpixel/putpixel', explanation: 'PIL 提供像素级 API' },
+        { id: 'q5-6-5', type: 'judge', question: '大图处理应注意内存占用', answer: true, explanation: '可分块处理' }
+      ],
       summary: '图像处理在多媒体应用中非常重要'
     },
     {
@@ -197,6 +239,13 @@ def send_email(subject, body, to_email):
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-7-1', type: 'single', question: 'MIMEText 用于？', options: ['构造文本邮件体','发送邮件','登录 SMTP'], answer: '构造文本邮件体', explanation: '封装正文' },
+        { id: 'q5-7-2', type: 'single', question: '邮件主题与收件人设置字段？', options: ['Title/To','Subject/To','Header/Receiver'], answer: 'Subject/To', explanation: '标准头字段' },
+        { id: 'q5-7-3', type: 'judge', question: '发送邮件需配置 SMTP 服务器与凭证', answer: true, explanation: '与服务商交互' },
+        { id: 'q5-7-4', type: 'single', question: 'HTML 邮件常用 MIME 类型？', options: ['text/html','text/plain','application/json'], answer: 'text/html', explanation: '展示富文本内容' },
+        { id: 'q5-7-5', type: 'judge', question: '敏感信息不应硬编码在代码中', answer: true, explanation: '使用环境变量/配置' }
+      ],
       summary: '邮件自动化提高沟通效率'
     },
     {
@@ -228,6 +277,13 @@ while True:
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-8-1', type: 'single', question: 'schedule.every(1).minutes.do(job) 的含义？', options: ['每秒执行','每分钟执行','每小时执行'], answer: '每分钟执行', explanation: '基于分钟的调度' },
+        { id: 'q5-8-2', type: 'single', question: '驱动任务实际执行的循环是？', options: ['run_forever','run_pending 循环','mainloop'], answer: 'run_pending 循环', explanation: '持续轮询触发' },
+        { id: 'q5-8-3', type: 'judge', question: '在受限环境可仅打印模拟结果', answer: true, explanation: '避免长运行阻塞' },
+        { id: 'q5-8-4', type: 'single', question: '定时任务常见的时间表达？', options: ['cron','yaml','gpu'], answer: 'cron', explanation: '类 crontab 表达计划' },
+        { id: 'q5-8-5', type: 'judge', question: '任务函数应尽量无副作用以便调度', answer: true, explanation: '易于测试与重试' }
+      ],
       summary: '定时任务实现工作自动化'
     },
     {
@@ -262,6 +318,13 @@ print(f"数据库主机: {host}")`,
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-9-1', type: 'single', question: 'configparser 用于？', options: ['读取/写入 INI 配置','管理 JSON','执行 SQL'], answer: '读取/写入 INI 配置', explanation: '标准配置格式之一' },
+        { id: 'q5-9-2', type: 'single', question: '写入配置到文件使用？', options: ['config.dump','config.write','config.save'], answer: 'config.write', explanation: 'write(file) 输出到文件' },
+        { id: 'q5-9-3', type: 'judge', question: '读取配置需先 read(filename)', answer: true, explanation: '加载配置内容' },
+        { id: 'q5-9-4', type: 'single', question: '布尔/数值配置读取时常需？', options: ['手动强转类型','内置自动识别','无需处理'], answer: '手动强转类型', explanation: 'INI 存储为字符串' },
+        { id: 'q5-9-5', type: 'judge', question: '配置分节常用大写节名如 APP/SERVER', answer: true, explanation: '只是风格，便于辨识' }
+      ],
       summary: '配置文件让程序更灵活易维护'
     },
     {
@@ -299,6 +362,13 @@ print(assistant.list_tasks())`,
         }
       ],
       extendedExercises: [],
+      selfQuiz: [
+        { id: 'q5-10-1', type: 'single', question: '模块化设计的好处不包含？', options: ['提升可维护性','增强复用性','增加不必要耦合'], answer: '增加不必要耦合', explanation: '模块化应降低耦合' },
+        { id: 'q5-10-2', type: 'single', question: '类中存放哪类数据合适？', options: ['临时变量','配置常量','与对象状态相关的数据'], answer: '与对象状态相关的数据', explanation: '保持职责单一' },
+        { id: 'q5-10-3', type: 'judge', question: '方法命名应体现语义与动作', answer: true, explanation: '可读性第一' },
+        { id: 'q5-10-4', type: 'single', question: '提醒功能更适合放在哪里？', options: ['视图层','业务层','数据层'], answer: '业务层', explanation: '由业务规则驱动' },
+        { id: 'q5-10-5', type: 'judge', question: '统一入口与日志有助于问题追踪', answer: true, explanation: '便于排错与监控' }
+      ],
       summary: '综合项目展示了Python的强大应用能力'
     },
     {
@@ -407,6 +477,13 @@ for i in range(1,4):
     log(f"执行任务 {i} 完成")`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q5-sum-1', type: 'single', question: '爬虫与 GUI 结合的常见挑战？', options: ['网络与界面阻塞','缺少库支持','无法显示中文'], answer: '网络与界面阻塞', explanation: '需线程/异步避免卡 UI' },
+        { id: 'q5-sum-2', type: 'single', question: 'API 设计需要关注？', options: ['路由规划与校验','仅返回字符串','忽略状态码'], answer: '路由规划与校验', explanation: '清晰契约与错误处理' },
+        { id: 'q5-sum-3', type: 'judge', question: '自动化与定时任务适合做数据备份与清理', answer: true, explanation: '常见企业实践' },
+        { id: 'q5-sum-4', type: 'single', question: 'ML 小样本演示时应注意？', options: ['指标解读与过拟合','随机数禁用','必须使用深度网络'], answer: '指标解读与过拟合', explanation: '小样本需谨慎' },
+        { id: 'q5-sum-5', type: 'judge', question: '配置与日志管理是实战项目的基础设施', answer: true, explanation: '支撑可观测与可维护' }
       ],
       summary: '第5阶段学习了Python实战项目开发，包括爬虫、GUI、API、自动化、机器学习等技术的综合应用'
     }
