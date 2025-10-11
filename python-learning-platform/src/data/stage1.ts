@@ -394,6 +394,13 @@ while count > 0:
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-5-1', type: 'single', question: '打印 1 到 5（包含5）应使用哪段 range？', options: ['range(1,5)','range(1,6)','range(0,5)'], answer: 'range(1,6)', explanation: 'range 右端开区间，需写到 6' },
+        { id: 'q1-5-2', type: 'judge', question: 'while 循环需确保循环变量在循环体内更新，否则可能死循环。', answer: true, explanation: '必须改变循环条件的相关变量' },
+        { id: 'q1-5-3', type: 'single', question: '终止当前这一层循环的语句是？', options: ['break','continue','return'], answer: 'break', explanation: 'break 跳出当前层循环；continue 跳到下一次迭代' },
+        { id: 'q1-5-4', type: 'single', question: '输出 2,4,6,8,10 最简洁的写法是？', options: ['for i in range(2,11,2)','for i in range(1,10)','for i in range(2,10)'], answer: 'for i in range(2,11,2)', explanation: '步长为 2，右端写到 11' },
+        { id: 'q1-5-5', type: 'judge', question: 'continue 会跳过本次剩余语句并立即开始下一次循环。', answer: true, explanation: '与 break 的区别是不会彻底退出循环' }
+      ],
       summary: '循环用于重复操作，可用 for 或 while'
     },
     {
@@ -449,6 +456,13 @@ for fruit in fruits:
           solution: `prices = [5,12,9,18,20,7]\nhigh = [p for p in prices if p > 10]\nprint(high, len(high), sum(high)/len(high))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-6-1', type: 'single', question: '向列表末尾添加单个元素应使用？', options: ['append','extend','insert(0, x)'], answer: 'append', explanation: 'extend 用于合并序列' },
+        { id: 'q1-6-2', type: 'single', question: '[0,1,2,3,4][1:4] 的结果是？', options: ['[1,2,3]','[1,2,3,4]','[0,1,2,3]'], answer: '[1,2,3]', explanation: '切片左闭右开，不含 4' },
+        { id: 'q1-6-3', type: 'judge', question: '列表是可变类型，方法调用可原地修改内容。', answer: true, explanation: '如 .append/.remove 会就地修改' },
+        { id: 'q1-6-4', type: 'single', question: '访问列表最后一个元素的常用下标是？', options: ['len(lst)','-1','0'], answer: '-1', explanation: 'Python 允许负索引' },
+        { id: 'q1-6-5', type: 'single', question: '筛选偶数的列表推导式是？', options: ['[x for x in xs if x%2==0]','[x%2==0 for x in xs]','filter(xs, even)'], answer: '[x for x in xs if x%2==0]', explanation: '带 if 条件的推导式' }
       ],
       summary: '列表用于存储多个数据，支持增删改查和遍历'
     },
@@ -512,6 +526,13 @@ print(names)`,
           solution: `A = {"python","数据","基础","练习"}\nB = {"python","进阶","练习","算法"}\nprint("共同标签:", sorted(A & B))\nprint("A独有:", sorted(A - B))\nprint("全部标签:", sorted(A | B))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-7-1', type: 'single', question: '创建只含一个元素的元组写法是？', options: ["('a')","('a',)","tuple('a')"], answer: "('a',)", explanation: '需要结尾逗号区分括号表达式' },
+        { id: 'q1-7-2', type: 'judge', question: '集合会自动去重，同一元素只保留一个。', answer: true, explanation: 'set 的元素唯一性' },
+        { id: 'q1-7-3', type: 'single', question: '以下关于集合的叙述正确的是？', options: ['有序','可索引','无序'], answer: '无序', explanation: 'set 不支持索引' },
+        { id: 'q1-7-4', type: 'single', question: '向集合添加元素的方法是？', options: ['append','add','push'], answer: 'add', explanation: '列表用 append，集合用 add' },
+        { id: 'q1-7-5', type: 'judge', question: '判断某元素是否在集合中，平均时间复杂度为 O(1)。', answer: true, explanation: '哈希查找的平均复杂度' }
       ],
       summary: '元组不可变，集合元素唯一且无序'
     },
