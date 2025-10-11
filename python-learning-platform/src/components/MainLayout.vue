@@ -69,6 +69,7 @@
     </aside>
     
     <!-- 右侧主内容区 -->
+    <div class="mobile-overlay" v-if="mobileNavOpen" @click="mobileNavOpen = false"></div>
     <main class="main-content">
       <router-view />
     </main>
@@ -76,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { Document, EditPen } from '@element-plus/icons-vue'
 import { courses } from '@/data/courses'
@@ -123,6 +124,7 @@ const handleMenuSelect = (index: string) => {
   
   if (lesson) {
     router.push(`/lesson/${index}`)
+    mobileNavOpen.value = false
   }
 }
 
@@ -158,6 +160,10 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
+})
+
+watch(() => route.fullPath, () => {
+  mobileNavOpen.value = false
 })
 
 // 暴露方法给子组件使用
@@ -300,6 +306,7 @@ defineExpose({
   margin: 0;
   vertical-align: middle;
 }
+.mobile-overlay { display: none; }
 
 /* 响应式设计：移动端抽屉导航与顶部栏 */
 @media (max-width: 768px) {
@@ -327,6 +334,13 @@ defineExpose({
   }
   .sidebar.sidebar--mobile-open {
     transform: translateX(0);
+  }
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 999;
   }
 
   .logo {
