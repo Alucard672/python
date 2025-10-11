@@ -257,6 +257,13 @@ print((a > 5) and (b < 5))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-3-1', type: 'single', question: '10 // 3 的结果是？', options: ['3','3.33','余数1'], answer: '3', explanation: '// 是整除，结果为整数部分' },
+        { id: 'q1-3-2', type: 'single', question: '2 ** 3 表示？', options: ['2的3倍','2的3次方','3的2次方'], answer: '2的3次方', explanation: '** 为幂运算' },
+        { id: 'q1-3-3', type: 'judge', question: '(a > 1) and (b < 5) 同时为真时表达式为 True', answer: true, explanation: 'and 需要两个条件都成立' },
+        { id: 'q1-3-4', type: 'single', question: '下列比较为 True 的是？', options: ['3 > 5','3 == 3','3 != 3'], answer: '3 == 3', explanation: '== 判断相等' },
+        { id: 'q1-3-5', type: 'judge', question: 'a/b 与 a//b 的结果总是相同', answer: false, explanation: '/ 为浮点除法，// 为向下取整的整除' }
+      ],
       summary: '运算符用于计算和判断，表达式是操作符和变量的组合'
     },
     {
