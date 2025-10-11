@@ -1,8 +1,31 @@
 <template>
   <div id="app">
+    <div class="app-version-badge">{{ version }}</div>
     <RouterView />
   </div>
 </template>
+
+<script setup lang="ts">
+const env = (import.meta as any)?.env || {}
+const version = (env.VITE_APP_VERSION as string) || (env.VITE_GIT_COMMIT as string) || '1.0.0'
+</script>
+
+<style scoped>
+.app-version-badge {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 2px 8px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #fff;
+  background: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+}
+</style>
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
