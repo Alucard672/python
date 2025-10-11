@@ -329,6 +329,13 @@ print(grade)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-4-1', type: 'single', question: 'if/elif/else 中执行了一个分支后，其他分支还会执行吗？', options: ['会','不会','取决于条件'], answer: '不会', explanation: 'if-elif-else 只会匹配并执行第一个为真的分支' },
+        { id: 'q1-4-2', type: 'single', question: '判断偶数的表达式是？', options: ['n % 2 == 0','n / 2 == 0','n // 2 == 0'], answer: 'n % 2 == 0', explanation: '% 取余为0表示可被2整除' },
+        { id: 'q1-4-3', type: 'judge', question: 'elif 相当于 else if 的缩写，用于继续判断下一个条件。', answer: true, explanation: 'elif 表示“否则如果”' },
+        { id: 'q1-4-4', type: 'single', question: '嵌套 if 的逻辑可读性通常（与恰当的 elif 结构相比）？', options: ['更好','更差','完全相同'], answer: '更差', explanation: '过多嵌套会影响可读性，合理使用 elif 更清晰' },
+        { id: 'q1-4-5', type: 'judge', question: 'if 条件可以是任意能转为布尔值的表达式。', answer: true, explanation: 'Python 中任意对象都有布尔真值' }
+      ],
       summary: '条件判断让程序根据不同情况执行不同代码块'
     },
     {
