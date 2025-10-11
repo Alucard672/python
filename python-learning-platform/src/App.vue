@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 const env = (import.meta as any)?.env || {}
-const version = (env.VITE_APP_VERSION as string) || (env.VITE_GIT_COMMIT as string) || '1.0.0'
+const version = (env.VITE_APP_VERSION as string) || (env.VITE_GIT_COMMIT as string) || '1.0.1'
 </script>
 
 <style scoped>
