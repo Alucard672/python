@@ -10,8 +10,8 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-
-
+    "build:local": "vite build --base ./ --outDir dist-local",
+    "serve:local": "python3 -m http.server 5500 --directory dist-local",
 
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
