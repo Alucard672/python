@@ -79,6 +79,13 @@ print(x_clip.min(), x_clip.max())`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q4-1-1', type: 'single', question: '以下哪项不是 NumPy 数组的优势？', options: ['向量化运算','节省内存','原生支持异步IO'], answer: '原生支持异步IO', explanation: 'NumPy 主要面向数值计算，不涉及异步IO' },
+        { id: 'q4-1-2', type: 'single', question: '数组形状由什么表示？', options: ['dtype','shape','ndim'], answer: 'shape', explanation: 'shape 返回各维度长度的元组' },
+        { id: 'q4-1-3', type: 'judge', question: '布尔索引可用于筛选满足条件的元素', answer: true, explanation: '布尔数组与原数组按位对应筛选' },
+        { id: 'q4-1-4', type: 'single', question: '对二维数组 A 的第二列加权 w，常见写法？', options: ['A + w','A * w','A[:,1] *= w[1]'], answer: 'A * w', explanation: '利用广播对列进行按列权重乘法（w 形状与列数匹配）' },
+        { id: 'q4-1-5', type: 'judge', question: 'np.clip 可对数组按上下限截断', answer: true, explanation: 'np.clip(x, low, high) 将值限制在区间内' }
+      ],
       summary: 'NumPy提供了高效的数值计算能力'
     },
     {
@@ -144,6 +151,13 @@ print(df)
 print('平均分:', df['score'].mean())`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-2-1', type: 'single', question: 'DataFrame 的行筛选常用语法？', options: ['df.select(row>0)','df[df[\'col\']>0]','df.where(row>0)'], answer: 'df[\'col\']>0', explanation: '布尔索引 df[df[\'col\']>0] 最常用' },
+        { id: 'q4-2-2', type: 'single', question: '按多列分组后聚合均值与标准差可用？', options: ['groupby.sum()','groupby().agg([\'mean\',\'std\'])','pivot_table() 只能计数'], answer: 'groupby().agg([\'mean\',\'std\'])', explanation: 'agg 可对分组后列应用多种统计函数' },
+        { id: 'q4-2-3', type: 'judge', question: 'to_numeric(errors="coerce") 可将无法解析的值变为 NaN', answer: true, explanation: '便于后续填充或清洗' },
+        { id: 'q4-2-4', type: 'single', question: '缺失值常用的填充方法有？', options: ['fillna','dropdup','astype'], answer: 'fillna', explanation: 'fillna 用于填充缺失' },
+        { id: 'q4-2-5', type: 'judge', question: 'reset_index 可将分组后的层级索引展平成普通列', answer: true, explanation: '便于输出整洁表' }
       ],
       summary: 'Pandas是数据分析的核心工具'
     },
@@ -225,6 +239,13 @@ plt.savefig('prime_growth.png', dpi=300)
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q4-3-1', type: 'single', question: '设置图例与标题的函数分别是？', options: ['legend 与 title','label 与 caption','map 与 title'], answer: 'legend 与 title', explanation: 'plt.legend() 与 plt.title()' },
+        { id: 'q4-3-2', type: 'single', question: '保存高分辨率图片可设置参数？', options: ['dpi','fps','rate'], answer: 'dpi', explanation: 'plt.savefig(..., dpi=300)' },
+        { id: 'q4-3-3', type: 'judge', question: 'plt.tight_layout() 有助于避免子图标签遮挡', answer: true, explanation: '自动调整布局' },
+        { id: 'q4-3-4', type: 'single', question: '设置风格为 seaborn 风格可用？', options: ['plt.theme.use','plt.style.use','plt.set_style'], answer: 'plt.style.use', explanation: '如 plt.style.use(\'seaborn-v0_8\')' },
+        { id: 'q4-3-5', type: 'judge', question: 'ax.hist 可用于绘制直方图', answer: true, explanation: '直方图常用于展示分布' }
+      ],
       summary: 'Matplotlib让数据可视化变得简单'
     },
     {
@@ -288,6 +309,13 @@ valid = df[(df['price'] >= 0) & (df['price'] <= 10000)]
 print(valid)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-4-1', type: 'single', question: '读取 CSV 的常用函数？', options: ['pd.read_csv','pd.load_csv','np.read_csv'], answer: 'pd.read_csv', explanation: 'Pandas 提供 read_csv' },
+        { id: 'q4-4-2', type: 'single', question: '导出去除索引应设置？', options: ['index=False','header=False','names=False'], answer: 'index=False', explanation: 'to_csv(index=False) 不写出索引' },
+        { id: 'q4-4-3', type: 'judge', question: 'drop_duplicates 可删除重复行', answer: true, explanation: '数据清洗常用操作' },
+        { id: 'q4-4-4', type: 'single', question: '读取多份 CSV 合并常用？', options: ['pd.concat','pd.merge_only','np.stack'], answer: 'pd.concat', explanation: '按行拼接多个 DataFrame' },
+        { id: 'q4-4-5', type: 'judge', question: '数据校验可先设定合理范围并过滤异常值', answer: true, explanation: '保障数据质量' }
       ],
       summary: 'CSV是最常用的数据交换格式'
     },
@@ -368,6 +396,13 @@ normalized = [normalize(i) for i in items]
 print(normalized)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-5-1', type: 'single', question: 'json.dumps 的作用是？', options: ['解析字符串','序列化为字符串','读取文件'], answer: '序列化为字符串', explanation: '将对象转为 JSON 字符串' },
+        { id: 'q4-5-2', type: 'single', question: '展开嵌套 JSON 到扁平列常用？', options: ['pd.flatten','pd.json_normalize','pd.explode_json'], answer: 'pd.json_normalize', explanation: '专用于嵌套结构展开' },
+        { id: 'q4-5-3', type: 'judge', question: 'ensure_ascii=False 可保留中文', answer: true, explanation: '避免中文被转义' },
+        { id: 'q4-5-4', type: 'single', question: '校验缺字段并填默认值可用？', options: ['Schema.strict','dict.get + 默认值','json.strict'], answer: 'dict.get + 默认值', explanation: '通用安全取值方式' },
+        { id: 'q4-5-5', type: 'judge', question: 'json.loads 用于将字符串解析为对象', answer: true, explanation: '反序列化' }
       ],
       summary: 'JSON是Web开发中最重要的数据格式'
     },
@@ -465,6 +500,13 @@ print("总条数:", len(pages))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q4-6-1', type: 'single', question: 'requests.get 超时应设置哪个参数？', options: ['delay','timeout','expire'], answer: 'timeout', explanation: '避免长时间阻塞' },
+        { id: 'q4-6-2', type: 'single', question: '健壮请求处理中需要捕获的异常基类？', options: ['requests.Error','requests.RequestException','HTTPErrorOnly'], answer: 'requests.RequestException', explanation: '包含常见请求异常' },
+        { id: 'q4-6-3', type: 'judge', question: 'resp.raise_for_status() 会对 4xx/5xx 抛异常', answer: true, explanation: '便于统一错误处理' },
+        { id: 'q4-6-4', type: 'single', question: '分页抓取可通过什么参数进行？', options: ['path','page/size','freq'], answer: 'page/size', explanation: '常见分页接口参数' },
+        { id: 'q4-6-5', type: 'judge', question: '对 JSON 响应解析可用 resp.json()', answer: true, explanation: 'requests 内置 JSON 解析' }
+      ],
       summary: 'requests是Python网络请求的标准库'
     },
     {
@@ -543,6 +585,13 @@ print("相关系数:", round(corr, 3))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q4-7-1', type: 'single', question: 'Z-score 标准化结果均值与方差接近？', options: ['均值1 方差1','均值0 方差1','均值0 方差0'], answer: '均值0 方差1', explanation: '中心化至0，缩放至单位方差' },
+        { id: 'q4-7-2', type: 'single', question: 'IQR 方法用于？', options: ['异常值检测','数据合并','模型训练'], answer: '异常值检测', explanation: '四分位距用于识别极端值' },
+        { id: 'q4-7-3', type: 'judge', question: 'corr 可计算皮尔逊相关', answer: true, explanation: 'DataFrame/Series 提供相关性计算' },
+        { id: 'q4-7-4', type: 'single', question: '分组均值代码 df.groupby("cls")[\'x\'].mean() 中 "cls" 含义？', options: ['列名','索引名','文件名'], answer: '列名', explanation: '按列值分组' },
+        { id: 'q4-7-5', type: 'judge', question: '描述性统计可用 describe 快速查看', answer: true, explanation: '常用统计概览' }
+      ],
       summary: '统计分析帮助我们理解数据特征'
     },
     {
@@ -620,6 +669,13 @@ print("截尾后:", s_clip.tolist())
 print("标准化均值≈0:", round(float(z.mean()), 6))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-8-1', type: 'single', question: '缺失值处理常见策略不包括？', options: ['删除','填充','随机置换'], answer: '随机置换', explanation: '随机置换并非常规清洗策略' },
+        { id: 'q4-8-2', type: 'single', question: '类别编码常用方法？', options: ['one-hot','FFT','SVD'], answer: 'one-hot', explanation: '独热编码展开类别取值' },
+        { id: 'q4-8-3', type: 'judge', question: 'median 常用于数值列稳健填充', answer: true, explanation: '受极端值影响较小' },
+        { id: 'q4-8-4', type: 'single', question: '分位截尾属于哪类操作？', options: ['缩放','变换','稳健去极值'], answer: '稳健去极值', explanation: 'Winsorize 抑制异常点影响' },
+        { id: 'q4-8-5', type: 'judge', question: 'get_dummies 可快速实现 one-hot 编码', answer: true, explanation: 'Pandas 提供便捷函数' }
       ],
       summary: '数据清洗是数据分析的重要前置步骤'
     },
@@ -727,6 +783,13 @@ plt.savefig('viz_grid.png', dpi=200)
 `,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-9-1', type: 'single', question: '创建 2x2 子图使用？', options: ['plt.subplots(2,2)','plt.subplot(4)','plt.grids(2,2)'], answer: 'plt.subplots(2,2)', explanation: '返回 fig, axes 网格' },
+        { id: 'q4-9-2', type: 'single', question: '设置 x 轴刻度旋转角度可用？', options: ['plt.xticks(rotation=...)','plt.rotatex(...)','axes.set_xticks_angle(...)'], answer: 'plt.xticks(rotation=...)', explanation: '或 ax.tick_params(axis="x", rotation=...)' },
+        { id: 'q4-9-3', type: 'judge', question: '注释 annotate 可指定箭头样式', answer: true, explanation: 'arrowprops 参数' },
+        { id: 'q4-9-4', type: 'single', question: '直方图 bins 用于？', options: ['颜色数量','箱数','图宽'], answer: '箱数', explanation: '决定分箱粒度' },
+        { id: 'q4-9-5', type: 'judge', question: 'tight_layout 可在保存前调用以优化布局', answer: true, explanation: '避免裁剪元素' }
       ],
       summary: '掌握多种可视化技术，让数据展示更专业'
     },
@@ -872,6 +935,13 @@ plt.plot(df['score']); plt.title('成绩趋势'); plt.tight_layout()
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q4-10-1', type: 'single', question: '数据管线常见步骤正确顺序？', options: ['清洗→生成→分析','生成→清洗→分析','分析→清洗→生成'], answer: '生成→清洗→分析', explanation: '先生成/获取数据，再清洗，最后分析' },
+        { id: 'q4-10-2', type: 'single', question: '报告导出为 CSV 使用？', options: ['df.save()','df.to_csv()','csv.write()'], answer: 'df.to_csv()', explanation: 'Pandas 导出方法' },
+        { id: 'q4-10-3', type: 'judge', question: '可视化前可先 describe 了解数据分布', answer: true, explanation: '便于选择图表类型与尺度' },
+        { id: 'q4-10-4', type: 'single', question: '保存图像避免中文乱码可配置？', options: ['plt.rcParams["font.sans-serif"]','plt.rcParams["dpi"]','plt.rcParams["backend"]'], answer: 'plt.rcParams["font.sans-serif"]', explanation: '设置中文字体' },
+        { id: 'q4-10-5', type: 'judge', question: '导出文件时可先注释保存语句，避免评测环境写盘', answer: true, explanation: '遵循受限环境最佳实践' }
+      ],
       summary: '综合运用数据处理技术，完成完整的数据分析项目'
     },
     {
@@ -984,6 +1054,13 @@ print("循环耗时:", round(t1-t0, 4), "s")
 print("向量化耗时:", round(t3-t2, 4), "s")`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q4-sum-1', type: 'single', question: 'NumPy 与 Pandas 的定位分别偏向？', options: ['绘图 与 统计','数值计算 与 数据分析','网络请求 与 存储'], answer: '数值计算 与 数据分析', explanation: 'NumPy 提供底层数值阵列，Pandas 提供表格数据结构' },
+        { id: 'q4-sum-2', type: 'single', question: '数据清洗常涉及以下哪项？', options: ['模型训练','缺失/重复处理','部署上线'], answer: '缺失/重复处理', explanation: '清洗是分析前置步骤' },
+        { id: 'q4-sum-3', type: 'judge', question: '可视化时子图布局与风格选择会影响可读性', answer: true, explanation: '良好设计提升表达效果' },
+        { id: 'q4-sum-4', type: 'single', question: '高效读取/合并多 CSV 常用？', options: ['循环字符串拼接','pd.concat','np.vstack 直接用于 DataFrame'], answer: 'pd.concat', explanation: '面向 DataFrame 的拼接' },
+        { id: 'q4-sum-5', type: 'judge', question: 'requests 获取数据后需考虑健壮性与错误处理', answer: true, explanation: '网络环境复杂，需容错与重试' }
       ],
       summary: '第4阶段学习了Python数据处理核心技术，包括NumPy、Pandas、Matplotlib等工具的使用，为数据科学应用打下基础'
     }
