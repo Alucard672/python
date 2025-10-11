@@ -121,6 +121,13 @@ print(u)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-1-1', type: 'single', question: '类与实例的关系，下列说法正确的是？', options: ['实例是类的模板','类是实例的具体对象','类是模板，实例是依据模板创建的对象'], answer: '类是模板，实例是依据模板创建的对象', explanation: '类定义结构与行为，实例是类的具体化' },
+        { id: 'q3-1-2', type: 'single', question: '__init__ 方法的作用是？', options: ['定义类方法','初始化实例属性','销毁对象'], answer: '初始化实例属性', explanation: '__init__ 在创建实例时自动调用，用于初始化' },
+        { id: 'q3-1-3', type: 'judge', question: '实例方法的第一个参数通常是 self', answer: true, explanation: '约定俗成用于指向实例本身' },
+        { id: 'q3-1-4', type: 'single', question: '访问实例属性应使用哪个前缀？', options: ['cls.','self.','this.'], answer: 'self.', explanation: '在实例方法中通过 self 访问实例属性' },
+        { id: 'q3-1-5', type: 'judge', question: '同一个类创建的不同实例共享同一份实例属性值', answer: false, explanation: '实例属性存放在各自实例上，互不影响' }
+      ],
       summary: '类定义对象的结构和行为，对象是类的实例'
     },
     {
@@ -209,6 +216,13 @@ class Cat(Animal):
 Cat().speak()`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q3-2-1', type: 'single', question: '子类重写父类方法称为？', options: ['多态','封装','方法重写'], answer: '方法重写', explanation: '子类提供与父类同名的新实现' },
+        { id: 'q3-2-2', type: 'single', question: '调用父类同名方法的关键词是？', options: ['parent','base','super'], answer: 'super', explanation: '使用 super().method() 调用父类实现' },
+        { id: 'q3-2-3', type: 'judge', question: '多态意味着相同接口在不同子类上表现不同', answer: true, explanation: '同一调用，不同实现' },
+        { id: 'q3-2-4', type: 'single', question: '下列哪项不是继承的好处？', options: ['代码复用','提高耦合','抽象共性'], answer: '提高耦合', explanation: '继承应降低重复与体现抽象' },
+        { id: 'q3-2-5', type: 'judge', question: 'Python 不支持多态', answer: false, explanation: 'Python 通过鸭子类型与继承均可实现多态' }
       ],
       summary: '继承让代码复用，多态让同一接口有不同实现'
     },
@@ -305,6 +319,13 @@ print(hello.__name__, hello.__doc__)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-3-1', type: 'single', question: '装饰器本质上是一个返回什么的函数？', options: ['类','包装函数','生成器'], answer: '包装函数', explanation: '装饰器返回包裹原函数的可调用对象' },
+        { id: 'q3-3-2', type: 'single', question: '@deco 语法糖等价于？', options: ['deco(func())','func = deco(func)','deco = func'], answer: 'func = deco(func)', explanation: '装饰完成后名称绑定到新函数上' },
+        { id: 'q3-3-3', type: 'judge', question: 'functools.wraps 可保留被装饰函数的元数据', answer: true, explanation: '如 __name__、__doc__ 等' },
+        { id: 'q3-3-4', type: 'single', question: '参数化装饰器最外层函数的作用是？', options: ['作为包装器','接收装饰参数','替换被装饰函数'], answer: '接收装饰参数', explanation: '最外层负责接收参数并返回真正的装饰器' },
+        { id: 'q3-3-5', type: 'judge', question: '装饰器一定会改变被装饰函数的返回值', answer: false, explanation: '通常保持原返回值，也可按需修改' }
+      ],
       summary: '装饰器提供了功能增强的优雅方式'
     },
     {
@@ -376,6 +397,13 @@ print(out)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-4-1', type: 'single', question: 'yield 的作用是？', options: ['终止函数','创建生成器按需产出值','立即返回全部结果'], answer: '创建生成器按需产出值', explanation: 'yield 将函数变为生成器，惰性迭代' },
+        { id: 'q3-4-2', type: 'single', question: '生成器相较列表的主要优势？', options: ['随机访问快','更少内存占用','排序稳定'], answer: '更少内存占用', explanation: '逐个产出不需一次性存储' },
+        { id: 'q3-4-3', type: 'judge', question: '生成器可以被 for 循环遍历', answer: true, explanation: '生成器实现了迭代协议' },
+        { id: 'q3-4-4', type: 'single', question: 'range(10) 在 Python3 中是？', options: ['列表','迭代器','可迭代的 range 对象'], answer: '可迭代的 range 对象', explanation: '惰性提供序列' },
+        { id: 'q3-4-5', type: 'judge', question: '生成器一旦耗尽就不能再次遍历', answer: true, explanation: '需重新创建生成器' }
+      ],
       summary: '生成器提供了内存高效的数据生成方式'
     },
     {
@@ -442,6 +470,13 @@ for line in logs:
 print(counts)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q3-5-1', type: 'single', question: 're.search 与 re.findall 的区别？', options: ['search 找所有，findall 找一个','search 返回第一个匹配，findall 返回所有匹配','无区别'], answer: 'search 返回第一个匹配，findall 返回所有匹配', explanation: '用途不同' },
+        { id: 'q3-5-2', type: 'single', question: '\\d 在正则中表示？', options: ['任意字符','数字','字母数字'], answer: '数字', explanation: '\\d 表示数字字符' },
+        { id: 'q3-5-3', type: 'judge', question: '[a-z] 匹配任意小写字母', answer: true, explanation: '是一个字符类区间' },
+        { id: 'q3-5-4', type: 'single', question: '提取分组用哪种写法？', options: ['()','[]','{}'], answer: '()', explanation: '括号用于捕获分组' },
+        { id: 'q3-5-5', type: 'judge', question: '^ 与 $ 分别匹配行首与行尾', answer: true, explanation: '锚点元字符' }
       ],
       summary: '正则表达式是文本处理的强大工具'
     },
@@ -528,6 +563,13 @@ print(sum(res))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-6-1', type: 'single', question: 'threading.Thread(target=fn) 中 target 的含义？', options: ['线程名称','线程函数','线程返回值'], answer: '线程函数', explanation: '线程将执行 target 指定的函数' },
+        { id: 'q3-6-2', type: 'single', question: 'join 的作用是？', options: ['启动线程','等待线程结束','终止线程'], answer: '等待线程结束', explanation: '阻塞当前线程直到被等待线程结束' },
+        { id: 'q3-6-3', type: 'judge', question: 'CPU 密集任务在多线程下总能线性提速', answer: false, explanation: '受 GIL 影响，需多进程或原生扩展' },
+        { id: 'q3-6-4', type: 'single', question: '队列用于？', options: ['线程间安全通信','计时','日志输出'], answer: '线程间安全通信', explanation: 'queue 提供线程安全的生产消费' },
+        { id: 'q3-6-5', type: 'judge', question: 'multiprocessing 可绕过 GIL 实现并行', answer: true, explanation: '多进程各有独立解释器' }
+      ],
       summary: '多线程和多进程提供了并发编程能力'
     },
     {
@@ -592,6 +634,13 @@ threading.Thread(target=server).start()`,
 # 伪代码展示协议交互`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q3-7-1', type: 'single', question: '创建 TCP socket 使用？', options: ['socket.SOCK_DGRAM','socket.SOCK_STREAM','socket.SOCK_RAW'], answer: 'socket.SOCK_STREAM', explanation: 'TCP 使用流式套接字' },
+        { id: 'q3-7-2', type: 'single', question: '客户端连接常用方法？', options: ['bind','listen','connect'], answer: 'connect', explanation: '客户端主动连接' },
+        { id: 'q3-7-3', type: 'judge', question: 'send/recv 需要字节数据', answer: true, explanation: '需编码/解码' },
+        { id: 'q3-7-4', type: 'single', question: '服务器监听端口步骤正确顺序？', options: ['listen→bind→accept','bind→listen→accept','accept→bind→listen'], answer: 'bind→listen→accept', explanation: '绑定→监听→接受连接' },
+        { id: 'q3-7-5', type: 'judge', question: '网络编程需注意资源关闭', answer: true, explanation: '关闭连接防资源泄漏' }
       ],
       summary: 'Socket编程是网络通信的基础'
     },
@@ -673,6 +722,13 @@ conn.close()`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-8-1', type: 'single', question: 'sqlite3.connect 返回的是？', options: ['Cursor','Connection','Engine'], answer: 'Connection', explanation: '连接对象上可创建 cursor' },
+        { id: 'q3-8-2', type: 'single', question: '执行查询的对象是？', options: ['Connection','Cursor','Statement'], answer: 'Cursor', explanation: '游标用于执行 SQL' },
+        { id: 'q3-8-3', type: 'judge', question: '写入操作后需要 commit', answer: true, explanation: '提交事务保证持久化' },
+        { id: 'q3-8-4', type: 'single', question: '参数化查询占位符在 sqlite3 中是？', options: ['%s','?',':$name'], answer: '?', explanation: '使用 ? 作为占位符' },
+        { id: 'q3-8-5', type: 'judge', question: '连接与游标用完需关闭', answer: true, explanation: '释放资源' }
+      ],
       summary: 'SQLite提供了轻量级的数据库解决方案'
     },
     {
@@ -739,6 +795,13 @@ def add_api():
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q3-9-1', type: 'single', question: '@app.route("/") 装饰的是？', options: ['视图函数','中间件','模板'], answer: '视图函数', explanation: '路由映射到对应函数' },
+        { id: 'q3-9-2', type: 'single', question: '返回 JSON 通常使用？', options: ['render_template','jsonify','redirect'], answer: 'jsonify', explanation: '正确返回 JSON 响应' },
+        { id: 'q3-9-3', type: 'judge', question: 'debug=True 可自动重载并提供调试器', answer: true, explanation: '开发模式便于调试' },
+        { id: 'q3-9-4', type: 'single', question: '获取 POST JSON 的方法？', options: ['request.form','request.args','request.get_json'], answer: 'request.get_json', explanation: '解析 JSON 负载' },
+        { id: 'q3-9-5', type: 'judge', question: '路由函数必须返回字符串或响应对象', answer: true, explanation: '返回类型需可被 Flask 转换为响应' }
+      ],
       summary: 'Flask提供了轻量级的Web开发框架'
     },
     {
@@ -790,6 +853,13 @@ if __name__ == '__main__':
           solution: `# 伪代码：Flask 中使用 abort(400) 或返回自定义状态码`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q3-10-1', type: 'single', question: '小项目路由/数据/逻辑分别更适合放在？', options: ['同一文件','分层模块化','模板内'], answer: '分层模块化', explanation: '利于维护与扩展' },
+        { id: 'q3-10-2', type: 'single', question: '接口输入校验失败应返回？', options: ['200','302','4xx'], answer: '4xx', explanation: '客户端请求错误使用 4xx' },
+        { id: 'q3-10-3', type: 'judge', question: '分页可通过 page/size 与切片实现', answer: true, explanation: '常见分页参数' },
+        { id: 'q3-10-4', type: 'single', question: '跨模块共享数据最稳妥的方式？', options: ['全局变量','数据库或服务接口','环境变量'], answer: '数据库或服务接口', explanation: '避免全局共享导致耦合与状态错乱' },
+        { id: 'q3-10-5', type: 'judge', question: '应避免将密钥硬编码在代码库中', answer: true, explanation: '遵循安全最佳实践' }
       ],
       summary: '综合运用多种技术，完成实用的Web应用项目'
     },
@@ -847,6 +917,13 @@ db.add_student('小明', 18)`,
           solution: `# 伪代码：在浏览器受限环境下可打印模拟结果`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q3-sum-1', type: 'single', question: '以下哪项最能体现“多态”？', options: ['相同接口，不同实现','数据隐藏','类属性共享'], answer: '相同接口，不同实现', explanation: '多态核心是统一调用点、差异化实现' },
+        { id: 'q3-sum-2', type: 'single', question: '生成器相较列表的优势主要在于？', options: ['更快的索引','更低的内存占用','支持负索引'], answer: '更低的内存占用', explanation: '按需产出数据，惰性求值' },
+        { id: 'q3-sum-3', type: 'judge', question: '正则表达式可用于结构化数据提取', answer: true, explanation: '通过模式匹配提取所需字段' },
+        { id: 'q3-sum-4', type: 'single', question: '网络编程 socket 基本需要什么信息？', options: ['线程数','IP与端口','数据库名'], answer: 'IP与端口', explanation: '用于建立连接与通信' },
+        { id: 'q3-sum-5', type: 'judge', question: '数据库操作时需注意提交事务与资源关闭', answer: true, explanation: '确保数据一致性与资源释放' }
       ],
       summary: '第3阶段学习了Python高级特性，包括面向对象、装饰器、多线程、网络编程、数据库操作等'
     }
