@@ -13,7 +13,9 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'es2020'
+    target: 'es2020',
+    outDir: 'docs',
+    emptyOutDir: true
   },
   esbuild: {
     target: 'es2020'
