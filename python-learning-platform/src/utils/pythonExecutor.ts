@@ -9,13 +9,26 @@ export class PythonExecutor {
     if (this.initialized) return
 
     // 多源回退加载 Pyodide（优先本地，其次多个 CDN）
-    const candidates = [
-      // 本地优先（如将完整的 pyodide 目录放到 public/pyodide/）
-      '/pyodide/',
-      // 正确的 0.28.3 CDN 路径（必须带 full/）
+    // 根据部署的 BASE_URL 构造本地 Pyodide 目录，并支持环境开关强制本地
+    const baseUrl: string = (typeof import !== 'undefined' && (import.meta as any)?.env?.BASE_URL) || '/'
+    const localBase = `${baseUrl.replace(/\\/+$/, '')}/pyodide/`
+    const forceLocal = (typeof import !== 'undefined' && (import.meta as any)?.env?.VITE_PYODIDE_LOCAL) === 'true'
+
+    // CDN 回退列表（固定到 0.28.3 full/ 路径）
+    const cdnCandidates = [
       'https://cdn.jsdelivr.net/pyodide/v0.28.3/full/',
       'https://unpkg.com/pyodide@0.28.3/full/'
     ]
+
+    // 预检本地资源是否存在，避免请求 404 返回 HTML 造成二次错误
+    const localAvailable = async (): Promise<boolean> => {
+      try {
+        const res = await fetch(`${localBase}pyodide.json`, { method: 'HEAD' })
+        return res.ok
+      } catch {
+        return false
+      }
+    }
 
     const tryLoad = async (url: string) => {
       try {
@@ -29,10 +42,16 @@ export class PythonExecutor {
       }
     }
 
-    for (const url of candidates) {
-      // 跳过明显无效的本地路径（仅在非 http(s) 环境或无法访问时会失败，然后继续下一个）
-      const ok = await tryLoad(url)
-      if (ok) break
+    // 加载顺序：若本地可用或被强制，则先本地，否则直接走 CDN 列表
+    let loaded = false
+    if (forceLocal || await localAvailable()) {
+      loaded = await tryLoad(localBase)
+    }
+    if (!loaded) {
+      for (const url of cdnCandidates) {
+        loaded = await tryLoad(url)
+        if (loaded) break
+      }
     }
 
     if (!this.pyodide) {
