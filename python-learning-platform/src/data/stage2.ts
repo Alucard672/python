@@ -85,6 +85,13 @@ print(result)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q2-1-1', type: 'single', question: '取字符串前6个字符应使用？', options: ['s[0:5]','s[:6]','s[1:6]'], answer: 's[:6]', explanation: '切片左闭右开，省略起点默认0' },
+        { id: 'q2-1-2', type: 'single', question: '"Python".lower() 的结果是？', options: ['PYTHON','python','Python'], answer: 'python', explanation: 'lower 转小写' },
+        { id: 'q2-1-3', type: 'judge', question: '"a,b,c".split(",") 结果为 ["a","b","c"]', answer: true, explanation: '按逗号分割' },
+        { id: 'q2-1-4', type: 'single', question: '使用 "-" 连接 ["a","b"] 应写作？', options: ['"-".join(["a","b"])','["a","b"].join("-")','join("-", ["a","b"])'], answer: '"-".join(["a","b"])', explanation: 'join 是分隔符的方法' },
+        { id: 'q2-1-5', type: 'judge', question: '字符串是不可变类型，replace 返回新字符串。', answer: true, explanation: '不会原地修改' }
+      ],
       summary: '字符串支持索引、切片、各种方法操作文本'
     },
     {
@@ -176,6 +183,13 @@ log("网络错误", "ERROR")
 print("日志已写入")`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-2-1', type: 'single', question: '以只读方式打开文件的模式是？', options: ['"r"','"w"','"a"'], answer: '"r"', explanation: 'r 读，w 写(清空)，a 追加' },
+        { id: 'q2-2-2', type: 'judge', question: 'with 语句可确保文件在块结束后被正确关闭。', answer: true, explanation: '上下文管理器自动关闭' },
+        { id: 'q2-2-3', type: 'single', question: '逐行读取文件的常见写法是？', options: ['f.readlines() 一次性读','for line in f','f.read(全部)'], answer: 'for line in f', explanation: '流式读取更省内存' },
+        { id: 'q2-2-4', type: 'single', question: '向文件末尾追加应使用模式？', options: ['"w"','"a"','"x"'], answer: '"a"', explanation: 'a 追加，不清空原内容' },
+        { id: 'q2-2-5', type: 'judge', question: '写文本文件应显式声明 encoding="utf-8" 更稳妥。', answer: true, explanation: '避免平台默认编码差异' }
       ],
       summary: '使用with语句安全地进行文件操作，避免忘记关闭文件'
     },
@@ -277,6 +291,13 @@ print(content, logs)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q2-3-1', type: 'single', question: '捕获除以0的异常类型是？', options: ['ValueError','ZeroDivisionError','TypeError'], answer: 'ZeroDivisionError', explanation: '对应除零错误' },
+        { id: 'q2-3-2', type: 'judge', question: 'finally 中的代码无论是否发生异常都会执行。', answer: true, explanation: 'finally 保证清理行为' },
+        { id: 'q2-3-3', type: 'single', question: '把字符串转为整数可能抛出的异常是？', options: ['ValueError','IndexError','KeyError'], answer: 'ValueError', explanation: '无效数字格式' },
+        { id: 'q2-3-4', type: 'single', question: 'except Exception as e 中 e 的含义是？', options: ['异常类型','异常实例','异常堆栈'], answer: '异常实例', explanation: 'e 是异常对象' },
+        { id: 'q2-3-5', type: 'judge', question: '多个 except 从上到下匹配，越具体的异常应放在前面。', answer: true, explanation: '避免被更泛的异常提前捕获' }
+      ],
       summary: '异常处理让程序更健壮，遇到错误不会崩溃'
     },
     {
@@ -341,6 +362,13 @@ print(counts)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q2-4-1', type: 'single', question: '导入 math 模块并使用 sqrt，正确的是？', options: ['sqrt(4)','import sqrt','import math; math.sqrt(4)'], answer: 'import math; math.sqrt(4)', explanation: '需通过命名空间访问' },
+        { id: 'q2-4-2', type: 'single', question: 'from random import randint 后，调用应写？', options: ['random.randint','randint','Random.randint'], answer: 'randint', explanation: '已直接导入函数名' },
+        { id: 'q2-4-3', type: 'judge', question: '模块有助于复用与组织代码结构。', answer: true, explanation: '拆分为独立文件' },
+        { id: 'q2-4-4', type: 'single', question: '第三方包的安装工具是？', options: ['npm','pip','apt'], answer: 'pip', explanation: 'Python 包管理器' },
+        { id: 'q2-4-5', type: 'judge', question: '循环导入通常会导致问题，应避免。', answer: true, explanation: '会引发依赖循环' }
+      ],
       summary: '模块提供了丰富的功能，避免重复造轮子'
     },
     {
@@ -402,6 +430,13 @@ geo = prod ** (1/len(data))
 print(prod, round(geo, 4))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-5-1', type: 'single', question: '筛选 1~10 中偶数并平方的推导式？', options: ['[x**2 for x in range(1,11) if x%2==0]','[x^2 for x in 1..10]','map(pow2, evens)'], answer: '[x**2 for x in range(1,11) if x%2==0]', explanation: '带 if 条件筛选' },
+        { id: 'q2-5-2', type: 'judge', question: 'reduce 可用于对序列做累计汇总。', answer: true, explanation: '如求和、乘积' },
+        { id: 'q2-5-3', type: 'single', question: 'map(lambda x: x*2, [1,2]) 的结果是？', options: ['[2,4]','(2,4)','生成器需 list 转换'], answer: '生成器需 list 转换', explanation: 'Python3 返回迭代器' },
+        { id: 'q2-5-4', type: 'single', question: '过滤能被 3 整除的数应使用？', options: ['map','filter','reduce'], answer: 'filter', explanation: 'filter 负责筛选' },
+        { id: 'q2-5-5', type: 'judge', question: '推导式可替代大多数 map/filter 场景并更直观。', answer: true, explanation: '语法简洁' }
       ],
       summary: '列表推导式和高阶函数让数据处理更简洁'
     },
@@ -508,6 +543,13 @@ print(dist)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q2-6-1', type: 'single', question: '安全读取可能不存在的键值应使用？', options: ['d[k]','d.get(k)','d[k] or 0'], answer: 'd.get(k)', explanation: '避免 KeyError' },
+        { id: 'q2-6-2', type: 'judge', question: 'setdefault 可在键不存在时设置默认并返回该值。', answer: true, explanation: '常用于聚合' },
+        { id: 'q2-6-3', type: 'single', question: '遍历键与值的写法？', options: ['for k in d','for v in d.values()','for k,v in d.items()'], answer: 'for k,v in d.items()', explanation: 'items 返回键值对' },
+        { id: 'q2-6-4', type: 'single', question: '计算子字典 scores 平均值应写？', options: ['sum(scores)/len(scores)','sum(scores.values())/len(scores)','avg(scores)'], answer: 'sum(scores.values())/len(scores)', explanation: '取 values 汇总' },
+        { id: 'q2-6-5', type: 'judge', question: '嵌套字典适合层级数据，如学生→科目→分数。', answer: true, explanation: '层级模型' }
+      ],
       summary: '嵌套字典适合存储复杂的层级数据'
     },
     {
@@ -574,6 +616,13 @@ unique = sorted(set(tags))
 print(unique)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-7-1', type: 'single', question: '求两个集合的交集写法？', options: ['a + b','a & b','a ^ b'], answer: 'a & b', explanation: '& 是交集' },
+        { id: 'q2-7-2', type: 'single', question: '列表去重且排序的简洁方式？', options: ['sorted(list(set(lst)))','lst.unique().sort()','set(lst).sort()'], answer: 'sorted(list(set(lst)))', explanation: '先去重再排序' },
+        { id: 'q2-7-3', type: 'judge', question: '集合是无序结构，不支持下标访问。', answer: true, explanation: '不能用 s[0]' },
+        { id: 'q2-7-4', type: 'single', question: '并集运算符是？', options: ['&','|','-'], answer: '|', explanation: '| 是并集' },
+        { id: 'q2-7-5', type: 'judge', question: '对称差 a ^ b 是只在一个集合中出现的元素集合。', answer: true, explanation: '排除交集元素' }
       ],
       summary: '集合运算提供了强大的数据处理能力'
     },
@@ -650,6 +699,13 @@ print(stats(1,3,5,7))`,
 print(stats(1,3,5,7))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-8-1', type: 'single', question: '定义带默认参数的函数写法正确的是？', options: ['def f(x=1,y): ...','def f(x,y=1): ...','def f(x=1,y=2,*args): ...'], answer: 'def f(x,y=1): ...', explanation: '默认参数需在无默认之后' },
+        { id: 'q2-8-2', type: 'judge', question: '函数可以返回多个值，实为返回一个元组。', answer: true, explanation: '打包为 tuple' },
+        { id: 'q2-8-3', type: 'single', question: '接收任意个位置参数使用？', options: ['*args','**kwargs','args[]'], answer: '*args', explanation: '可变位置参数' },
+        { id: 'q2-8-4', type: 'single', question: 'format_user(**info) 中 ** 的作用是？', options: ['解包关键字参数','解包位置参数','打包参数'], answer: '解包关键字参数', explanation: '** 用于键值对' },
+        { id: 'q2-8-5', type: 'judge', question: '返回值可用解构赋值接收，如 a,b = func()。', answer: true, explanation: '符合元组解包语法' }
       ],
       summary: '函数参数提供了灵活性，默认参数让函数使用更便利'
     },
@@ -735,6 +791,13 @@ print(read_or_log("nofile.txt"))`,
 print(read_or_log("nofile.txt"))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-9-1', type: 'single', question: '读取文件每行并去除换行常用？', options: ['line','line.strip()','line.chomp()'], answer: 'line.strip()', explanation: 'strip 去除两端空白' },
+        { id: 'q2-9-2', type: 'judge', question: 'FileNotFoundError 只会在 open 阶段出现。', answer: false, explanation: '路径变化、后续操作也可能导致异常' },
+        { id: 'q2-9-3', type: 'single', question: '捕获所有异常的写法是？', options: ['except:','except Exception:','except BaseException:'], answer: 'except Exception:', explanation: '不建议裸 except' },
+        { id: 'q2-9-4', type: 'single', question: 'finally 的典型用途是？', options: ['记录日志','资源清理','性能优化'], answer: '资源清理', explanation: '如关闭文件/释放连接' },
+        { id: 'q2-9-5', type: 'judge', question: 'with open(...) as f: 可替代 try/finally 中的关闭操作。', answer: true, explanation: '上下文管理器负责关闭' }
       ],
       summary: '文件操作结合异常处理，让程序更加健壮'
     },
@@ -824,6 +887,13 @@ print("已导出")`,
 print("已导出")`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-10-1', type: 'single', question: '根据平均分排序应使用的 key 是？', options: ['lambda x: x["avg"]','lambda x: avg_score(x)','lambda x: x["math"]'], answer: 'lambda x: avg_score(x)', explanation: '已有 avg_score 函数' },
+        { id: 'q2-10-2', type: 'judge', question: '全局列表 students 在函数中修改需使用 global 声明。', answer: true, explanation: '重新绑定需要 global' },
+        { id: 'q2-10-3', type: 'single', question: '删除名为小明的学生应写？', options: ['del students["小明"]','students = [s for s in students if s["name"]!="小明"]','students.remove("小明")'], answer: 'students = [s for s in students if s["name"]!="小明"]', explanation: '以列表推导过滤' },
+        { id: 'q2-10-4', type: 'single', question: '导出报表每行 "name,avg" 应使用？', options: ['f.write(f"{name},{avg}\\n")','print(name,avg,file=f)','两者都可'], answer: '两者都可', explanation: '均能写入文本' },
+        { id: 'q2-10-5', type: 'judge', question: 'avg_score 结果可用 round(avg,1) 做格式化展示。', answer: true, explanation: '保留一位小数' }
       ],
       summary: '综合运用多种知识点，完成实用的管理系统项目'
     },
@@ -957,6 +1027,13 @@ print(process_lines(["张三,90,85,92","坏行,xx,yy"]))`,
 print(process_lines(["张三,90,85,92","坏行,xx,yy"]))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q2-sum-1', type: 'single', question: '本阶段不涉及的主题是？', options: ['字符串与文件','异常处理与模块','深度学习模型训练'], answer: '深度学习模型训练', explanation: '属后续高级主题' },
+        { id: 'q2-sum-2', type: 'judge', question: 'with 与 try/finally 在资源关闭保障方面等价。', answer: true, explanation: 'with 更简洁' },
+        { id: 'q2-sum-3', type: 'single', question: '去重并排序的简洁写法？', options: ['set(sorted(lst))','sorted(list(set(lst)))','unique(lst).sort()'], answer: 'sorted(list(set(lst)))', explanation: '先 set 后 sorted' },
+        { id: 'q2-sum-4', type: 'single', question: '多异常捕获的推荐顺序？', options: ['从泛到专','从专到泛','随意'], answer: '从专到泛', explanation: '避免被泛异常抢先捕获' },
+        { id: 'q2-sum-5', type: 'judge', question: 'map/filter/reduce 可与推导式/内建函数搭配提升可读性与性能。', answer: true, explanation: '合理使用更优雅' }
       ],
       summary: '第2阶段学习了Python进阶特性，包括字符串操作、文件处理、异常处理、模块使用、高级数据结构操作等，为更复杂的应用打下基础'
     }

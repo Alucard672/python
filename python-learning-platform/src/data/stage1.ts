@@ -257,6 +257,13 @@ print((a > 5) and (b < 5))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-3-1', type: 'single', question: '10 // 3 的结果是？', options: ['3','3.33','余数1'], answer: '3', explanation: '// 是整除，结果为整数部分' },
+        { id: 'q1-3-2', type: 'single', question: '2 ** 3 表示？', options: ['2的3倍','2的3次方','3的2次方'], answer: '2的3次方', explanation: '** 为幂运算' },
+        { id: 'q1-3-3', type: 'judge', question: '(a > 1) and (b < 5) 同时为真时表达式为 True', answer: true, explanation: 'and 需要两个条件都成立' },
+        { id: 'q1-3-4', type: 'single', question: '下列比较为 True 的是？', options: ['3 > 5','3 == 3','3 != 3'], answer: '3 == 3', explanation: '== 判断相等' },
+        { id: 'q1-3-5', type: 'judge', question: 'a/b 与 a//b 的结果总是相同', answer: false, explanation: '/ 为浮点除法，// 为向下取整的整除' }
+      ],
       summary: '运算符用于计算和判断，表达式是操作符和变量的组合'
     },
     {
@@ -322,6 +329,13 @@ print(grade)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-4-1', type: 'single', question: 'if/elif/else 中执行了一个分支后，其他分支还会执行吗？', options: ['会','不会','取决于条件'], answer: '不会', explanation: 'if-elif-else 只会匹配并执行第一个为真的分支' },
+        { id: 'q1-4-2', type: 'single', question: '判断偶数的表达式是？', options: ['n % 2 == 0','n / 2 == 0','n // 2 == 0'], answer: 'n % 2 == 0', explanation: '% 取余为0表示可被2整除' },
+        { id: 'q1-4-3', type: 'judge', question: 'elif 相当于 else if 的缩写，用于继续判断下一个条件。', answer: true, explanation: 'elif 表示“否则如果”' },
+        { id: 'q1-4-4', type: 'single', question: '嵌套 if 的逻辑可读性通常（与恰当的 elif 结构相比）？', options: ['更好','更差','完全相同'], answer: '更差', explanation: '过多嵌套会影响可读性，合理使用 elif 更清晰' },
+        { id: 'q1-4-5', type: 'judge', question: 'if 条件可以是任意能转为布尔值的表达式。', answer: true, explanation: 'Python 中任意对象都有布尔真值' }
+      ],
       summary: '条件判断让程序根据不同情况执行不同代码块'
     },
     {
@@ -380,6 +394,13 @@ while count > 0:
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-5-1', type: 'single', question: '打印 1 到 5（包含5）应使用哪段 range？', options: ['range(1,5)','range(1,6)','range(0,5)'], answer: 'range(1,6)', explanation: 'range 右端开区间，需写到 6' },
+        { id: 'q1-5-2', type: 'judge', question: 'while 循环需确保循环变量在循环体内更新，否则可能死循环。', answer: true, explanation: '必须改变循环条件的相关变量' },
+        { id: 'q1-5-3', type: 'single', question: '终止当前这一层循环的语句是？', options: ['break','continue','return'], answer: 'break', explanation: 'break 跳出当前层循环；continue 跳到下一次迭代' },
+        { id: 'q1-5-4', type: 'single', question: '输出 2,4,6,8,10 最简洁的写法是？', options: ['for i in range(2,11,2)','for i in range(1,10)','for i in range(2,10)'], answer: 'for i in range(2,11,2)', explanation: '步长为 2，右端写到 11' },
+        { id: 'q1-5-5', type: 'judge', question: 'continue 会跳过本次剩余语句并立即开始下一次循环。', answer: true, explanation: '与 break 的区别是不会彻底退出循环' }
+      ],
       summary: '循环用于重复操作，可用 for 或 while'
     },
     {
@@ -435,6 +456,13 @@ for fruit in fruits:
           solution: `prices = [5,12,9,18,20,7]\nhigh = [p for p in prices if p > 10]\nprint(high, len(high), sum(high)/len(high))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-6-1', type: 'single', question: '向列表末尾添加单个元素应使用？', options: ['append','extend','insert(0, x)'], answer: 'append', explanation: 'extend 用于合并序列' },
+        { id: 'q1-6-2', type: 'single', question: '[0,1,2,3,4][1:4] 的结果是？', options: ['[1,2,3]','[1,2,3,4]','[0,1,2,3]'], answer: '[1,2,3]', explanation: '切片左闭右开，不含 4' },
+        { id: 'q1-6-3', type: 'judge', question: '列表是可变类型，方法调用可原地修改内容。', answer: true, explanation: '如 .append/.remove 会就地修改' },
+        { id: 'q1-6-4', type: 'single', question: '访问列表最后一个元素的常用下标是？', options: ['len(lst)','-1','0'], answer: '-1', explanation: 'Python 允许负索引' },
+        { id: 'q1-6-5', type: 'single', question: '筛选偶数的列表推导式是？', options: ['[x for x in xs if x%2==0]','[x%2==0 for x in xs]','filter(xs, even)'], answer: '[x for x in xs if x%2==0]', explanation: '带 if 条件的推导式' }
       ],
       summary: '列表用于存储多个数据，支持增删改查和遍历'
     },
@@ -498,6 +526,13 @@ print(names)`,
           solution: `A = {"python","数据","基础","练习"}\nB = {"python","进阶","练习","算法"}\nprint("共同标签:", sorted(A & B))\nprint("A独有:", sorted(A - B))\nprint("全部标签:", sorted(A | B))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-7-1', type: 'single', question: '创建只含一个元素的元组写法是？', options: ["('a')","('a',)","tuple('a')"], answer: "('a',)", explanation: '需要结尾逗号区分括号表达式' },
+        { id: 'q1-7-2', type: 'judge', question: '集合会自动去重，同一元素只保留一个。', answer: true, explanation: 'set 的元素唯一性' },
+        { id: 'q1-7-3', type: 'single', question: '以下关于集合的叙述正确的是？', options: ['有序','可索引','无序'], answer: '无序', explanation: 'set 不支持索引' },
+        { id: 'q1-7-4', type: 'single', question: '向集合添加元素的方法是？', options: ['append','add','push'], answer: 'add', explanation: '列表用 append，集合用 add' },
+        { id: 'q1-7-5', type: 'judge', question: '判断某元素是否在集合中，平均时间复杂度为 O(1)。', answer: true, explanation: '哈希查找的平均复杂度' }
       ],
       summary: '元组不可变，集合元素唯一且无序'
     },
@@ -563,6 +598,13 @@ print(student)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q1-8-1', type: 'single', question: '安全取值避免 KeyError 的方法是？', options: ['d[k]','d.get(k)','d.ensure(k)'], answer: 'd.get(k)', explanation: 'get 可选默认值，避免抛异常' },
+        { id: 'q1-8-2', type: 'judge', question: 'dict 的键必须是可哈希(可散列)的对象。', answer: true, explanation: '如不可变类型通常可作键' },
+        { id: 'q1-8-3', type: 'single', question: '合并两个字典(后者覆盖前者)写法是？', options: ['d1+d2','{**d1, **d2}','d1.extend(d2)'], answer: '{**d1, **d2}', explanation: '字面量解包方式' },
+        { id: 'q1-8-4', type: 'single', question: '遍历键值对常用方法？', options: ['for k in d','for v in d','for k,v in d.items()'], answer: 'for k,v in d.items()', explanation: 'items 返回 (键,值) 对' },
+        { id: 'q1-8-5', type: 'judge', question: 'setdefault 可在键不存在时设置默认并返回该值。', answer: true, explanation: '常用于分组聚合' }
+      ],
       summary: '字典用键值对存储数据，便于查找和修改'
     },
     {
@@ -625,6 +667,13 @@ print(greet("小明"))`,
           solution: `def safe_div(a,b):\n    if b == 0:\n        return "错误：除数不能为0"\n    return a/b\nprint(safe_div(10,2))\nprint(safe_div(5,0))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-9-1', type: 'single', question: '函数定义的关键字是？', options: ['fun','def','fn'], answer: 'def', explanation: 'Python 用 def 定义函数' },
+        { id: 'q1-9-2', type: 'judge', question: 'return 会结束函数并返回值。', answer: true, explanation: 'return 后的语句不会再执行' },
+        { id: 'q1-9-3', type: 'single', question: '带默认值参数应出现在参数列表的哪个位置？', options: ['最前','中间任意','无默认值之后'], answer: '无默认值之后', explanation: '参数顺序有要求' },
+        { id: 'q1-9-4', type: 'single', question: '返回多个值时函数实际返回的类型是？', options: ['list','tuple','dict'], answer: 'tuple', explanation: 'Python 通过元组打包' },
+        { id: 'q1-9-5', type: 'judge', question: '函数可以作为参数传入另一个函数。', answer: true, explanation: '函数是一等公民' }
       ],
       summary: '函数用于封装重复操作，提高代码复用性'
     },
@@ -713,6 +762,13 @@ print("苹果买3个的价格:", fruit_price("苹果", 3))`,
           solution: `items = {"苹果":5,"香蕉":2,"橘子":3,"葡萄":4}\nfor name, price in items.items():\n    print(f"{name:4s} | {price:2d}")`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-10-1', type: 'single', question: '判断是否超预算应使用的比较是？', options: ['total >= budget','total > budget','budget > total'], answer: 'total > budget', explanation: '题干示例用 “超出预算” 的逻辑' },
+        { id: 'q1-10-2', type: 'judge', question: '用 sum(prices[f] for f in fruits) 可计算水果总价。', answer: true, explanation: '生成器表达式求和' },
+        { id: 'q1-10-3', type: 'single', question: '价格格式化为两位小数的 f-string 写法？', options: ['{price:.2}','{price:.2f}','{:.2}'], answer: '{price:.2f}', explanation: '小数两位用 .2f' },
+        { id: 'q1-10-4', type: 'single', question: '从字典安全获取不存在的键价格应使用？', options: ['prices[k]','prices.get(k, 0)','prices.ensure(k)'], answer: 'prices.get(k, 0)', explanation: '提供默认 0 避免 KeyError' },
+        { id: 'q1-10-5', type: 'judge', question: '将多种知识点组合到函数中有助于复用与测试。', answer: true, explanation: '封装利于复用与测试' }
       ],
       summary: '将变量、列表、字典、循环、条件、函数结合使用，能设计小项目解决实际问题，提高综合能力'
     },
@@ -808,6 +864,13 @@ print(f"{name}的平均分是: {avg}")`,
           solution: `text = "python 学习 python 练习 数据 学习 数据 python"\nwords = text.split()\nfrom collections import Counter\ncnt = Counter(words)\nprint(cnt.most_common(3))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q1-sum-1', type: 'single', question: '下列哪项不属于本阶段重点？', options: ['变量与数据类型','循环与条件','面向对象高级继承','列表/集合/字典'], answer: '面向对象高级继承', explanation: 'OOP 高级属于后续阶段' },
+        { id: 'q1-sum-2', type: 'judge', question: '字典适合按键快速查找对应的值。', answer: true, explanation: '哈希结构查找快' },
+        { id: 'q1-sum-3', type: 'single', question: '若要判断两个条件都满足应使用？', options: ['or','and','xor'], answer: 'and', explanation: 'and 要求两个条件同时为真' },
+        { id: 'q1-sum-4', type: 'single', question: '列表去重且不关心顺序的简单方案？', options: ['list(set(lst))','lst.unique()','set(lst).list()'], answer: 'list(set(lst))', explanation: '转 set 去重再转回列表' },
+        { id: 'q1-sum-5', type: 'judge', question: 'range(1, n) 会包含 n。', answer: false, explanation: '右端开区间，不含 n' }
       ],
       summary: '第1阶段学习了Python基础语法，包括变量、数据类型、运算符、条件判断、循环、列表、元组、集合、字典和函数，为后续学习打下坚实基础'
     }

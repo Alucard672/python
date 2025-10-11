@@ -72,6 +72,13 @@ print(schema)`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q6-1-1', type: 'single', question: 'Flask 获取所有文章常通过？', options: ['Post.list()','Post.query.all()','db.select_all()'], answer: 'Post.query.all()', explanation: 'SQLAlchemy 查询接口' },
+        { id: 'q6-1-2', type: 'single', question: '模板渲染引擎是？', options: ['Jinja2','Mako','Bottle'], answer: 'Jinja2', explanation: 'Flask 默认使用 Jinja2' },
+        { id: 'q6-1-3', type: 'judge', question: '配置数据库 URI 通常通过 app.config 设置', answer: true, explanation: 'app.config[...] 进行配置' },
+        { id: 'q6-1-4', type: 'single', question: '返回 HTML 页应使用？', options: ['render_template','jsonify','send_file'], answer: 'render_template', explanation: '渲染模板' },
+        { id: 'q6-1-5', type: 'judge', question: '创建表需在模型定义后调用 Base.metadata.create_all/扩展等对应方法', answer: true, explanation: '初始化数据库结构' }
+      ],
       summary: 'Flask是轻量级Web框架，通过路由处理请求，模板渲染页面，SQLAlchemy操作数据库'
     },
     {
@@ -147,6 +154,13 @@ print("最终记录数:", len(clean))
 print(clean)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-2-1', type: 'single', question: '设置 UA 的目的？', options: ['伪装成浏览器','提升速度','开启缓存'], answer: '伪装成浏览器', explanation: '降低被拦截概率' },
+        { id: 'q6-2-2', type: 'single', question: 'select(".news-item") 属于？', options: ['CSS 选择器','XPath','正则'], answer: 'CSS 选择器', explanation: 'BeautifulSoup 支持 select' },
+        { id: 'q6-2-3', type: 'judge', question: '抽取时需做空值保护以防止 AttributeError', answer: true, explanation: 'HTML 结构不稳定' },
+        { id: 'q6-2-4', type: 'single', question: '数据去重常用的容器/方法？', options: ['list','set','tuple'], answer: 'set', explanation: '利用集合去重' },
+        { id: 'q6-2-5', type: 'judge', question: '导出前建议统计记录数并做基本校验', answer: true, explanation: '验证抓取质量' }
       ],
       summary: '爬虫通过requests获取网页，BeautifulSoup解析HTML，需要处理反爬虫和数据清洗'
     },
@@ -234,6 +248,13 @@ print("买入信号数:", int(signal_buy.sum()))
 print("卖出信号数:", int(signal_sell.sum()))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-3-1', type: 'single', question: '滚动均线的典型用法？', options: ['平滑噪声','提升分辨率','降低维度'], answer: '平滑噪声', explanation: '移动平均平滑序列' },
+        { id: 'q6-3-2', type: 'single', question: 'MACD 的核心构成？', options: ['两条 EMA 差与其信号线','两条 SMA 比值','价格对数'], answer: '两条 EMA 差与其信号线', explanation: 'MACD = EMA12-EMA26，信号线为其 EMA' },
+        { id: 'q6-3-3', type: 'judge', question: '技术指标不保证盈利，仅作辅助', answer: true, explanation: '需风险控制' },
+        { id: 'q6-3-4', type: 'single', question: '买卖信号交叉常见策略？', options: ['MA5/MA20 交叉','FFT 交叉','PCA 交叉'], answer: 'MA5/MA20 交叉', explanation: '常见均线策略示例' },
+        { id: 'q6-3-5', type: 'judge', question: '绘图前可先计算衍生列如 ma5', answer: true, explanation: '便于直观展示' }
       ],
       summary: '金融数据分析需要掌握技术指标计算、数据可视化和趋势分析方法'
     },
@@ -332,6 +353,13 @@ print(sorted(recommend, key=lambda x: -x[1]))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q6-4-1', type: 'single', question: '余弦相似度的值域？', options: ['[-1,1]','[0,1]','[0,∞)'], answer: '[0,1]', explanation: '非负数据常落在[0,1]' },
+        { id: 'q6-4-2', type: 'single', question: '用户相似度矩阵的形状是？', options: ['物品数×用户数','用户数×用户数','用户数×物品数'], answer: '用户数×用户数', explanation: '两两用户相似度' },
+        { id: 'q6-4-3', type: 'judge', question: '基于物品的协同过滤计算物品两两相似度', answer: true, explanation: '按列或按物品向量' },
+        { id: 'q6-4-4', type: 'single', question: 'Top-N 推荐通常剔除哪些项？', options: ['已评分/已购买项','热门项','冷门项'], answer: '已评分/已购买项', explanation: '避免重复推荐' },
+        { id: 'q6-4-5', type: 'judge', question: '矩阵稀疏是推荐系统常见问题', answer: true, explanation: '需降维/隐语义等方法' }
+      ],
       summary: '推荐系统通过分析用户行为和物品特征，为用户提供个性化推荐'
     },
     {
@@ -429,6 +457,13 @@ print("加载: model.load_weights('model.weights.h5')  # 示例")`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q6-5-1', type: 'single', question: 'Keras 构建序列模型使用？', options: ['keras.Sequential','keras.Series','keras.Stack'], answer: 'keras.Sequential', explanation: '顺序堆叠层' },
+        { id: 'q6-5-2', type: 'single', question: '二分类最后一层常用激活？', options: ['relu','softmax','sigmoid'], answer: 'sigmoid', explanation: '输出概率' },
+        { id: 'q6-5-3', type: 'judge', question: 'model.compile 需要指定优化器与损失', answer: true, explanation: '训练前配置' },
+        { id: 'q6-5-4', type: 'single', question: '保存权重 API？', options: ['save_model','save_weights','dump'], answer: 'save_weights', explanation: '保存参数到文件' },
+        { id: 'q6-5-5', type: 'judge', question: '示例中可用小数据快速演示而非长时间训练', answer: true, explanation: '兼顾教学与资源' }
+      ],
       summary: '深度学习通过多层神经网络自动学习特征，CNN特别适合图像识别任务'
     },
     {
@@ -507,6 +542,13 @@ y_pred = [1,0,0,1,0,1,1]
 print(confusion_matrix(y_true, y_pred))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-6-1', type: 'single', question: '清洗文本常见步骤不包括？', options: ['去标点/小写化','去停用词','增加噪声'], answer: '增加噪声', explanation: '应降低噪声' },
+        { id: 'q6-6-2', type: 'single', question: 'CountVectorizer 作用？', options: ['词频向量化','词嵌入','主题建模'], answer: '词频向量化', explanation: '将文本转为词频表示' },
+        { id: 'q6-6-3', type: 'judge', question: '停用词用于移除高频无意义词', answer: true, explanation: '提高特征质量' },
+        { id: 'q6-6-4', type: 'single', question: '混淆矩阵用于评估？', options: ['回归','分类','聚类'], answer: '分类', explanation: '展示 TP/FP/FN/TN' },
+        { id: 'q6-6-5', type: 'judge', question: '正则可用于初步清洗非字母数字字符', answer: true, explanation: '常用预处理手段' }
       ],
       summary: 'NLP通过文本预处理、特征提取、机器学习模型来理解和分析自然语言'
     },
@@ -592,6 +634,13 @@ for line in logs:
 print(stats)`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-7-1', type: 'single', question: 'psutil.cpu_percent(interval=1) 的 interval 含义？', options: ['采样次数','采样间隔秒','线程数量'], answer: '采样间隔秒', explanation: '计算平均 CPU 使用率' },
+        { id: 'q6-7-2', type: 'single', question: '内存使用率字段？', options: ['memory.used','memory.percent','memory.rate'], answer: 'memory.percent', explanation: '百分比占用' },
+        { id: 'q6-7-3', type: 'judge', question: '超过阈值可输出告警日志', answer: true, explanation: '基础告警策略' },
+        { id: 'q6-7-4', type: 'single', question: '滚动均值用于？', options: ['平滑短期波动','增加峰值','压缩磁盘'], answer: '平滑短期波动', explanation: '更稳定的趋势' },
+        { id: 'q6-7-5', type: 'judge', question: '日志解析常需正则或简单分隔处理', answer: true, explanation: '结构化日志便于统计' }
       ],
       summary: '自动化运维通过监控系统状态、分析日志、自动化部署来提高运维效率'
     },
@@ -691,6 +740,13 @@ print(page([{"id":i} for i in range(1,6)], page=2, size=2))`,
           type: 'advanced'
         }
       ],
+      selfQuiz: [
+        { id: 'q6-8-1', type: 'single', question: '响应模型的作用？', options: ['限制输出结构','加速网络','压缩传输'], answer: '限制输出结构', explanation: 'Pydantic 校验/序列化' },
+        { id: 'q6-8-2', type: 'single', question: 'POST 创建资源的常用返回码？', options: ['200','201','204'], answer: '201', explanation: '表示已创建' },
+        { id: 'q6-8-3', type: 'judge', question: '分页响应需要 total/page/size/items 等字段', answer: true, explanation: '规范化结构' },
+        { id: 'q6-8-4', type: 'single', question: '未找到资源通常返回？', options: ['400','401','404'], answer: '404', explanation: '资源不存在' },
+        { id: 'q6-8-5', type: 'judge', question: '路径参数类型声明可自动校验', answer: true, explanation: 'FastAPI 利用类型提示' }
+      ],
       summary: 'RESTful API通过HTTP方法和标准化的URL结构，为不同客户端提供数据服务'
     },
     {
@@ -786,6 +842,13 @@ except Exception:
 print("最终 users:", db["users"])`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-9-1', type: 'single', question: '一对多关系在 SQLAlchemy 中通常通过？', options: ['relationship','connect','join_only'], answer: 'relationship', explanation: 'relationship/back_populates 建立关系' },
+        { id: 'q6-9-2', type: 'single', question: '主键字段类型常用？', options: ['String','Integer','Text'], answer: 'Integer', explanation: '自增整型常用作主键' },
+        { id: 'q6-9-3', type: 'judge', question: '会话需要提交事务 commit 才会落库', answer: true, explanation: '否则仅在内存' },
+        { id: 'q6-9-4', type: 'single', question: '外键在 Book 表中如何声明？', options: ['ForeignKey("authors.id")','PrimaryKey("authors.id")','Index("authors.id")'], answer: 'ForeignKey("authors.id")', explanation: '建立引用关系' },
+        { id: 'q6-9-5', type: 'judge', question: '回滚可恢复到异常前的状态', answer: true, explanation: '保证一致性' }
       ],
       summary: 'ORM通过对象关系映射，让我们可以用面向对象的方式操作数据库'
     },
@@ -923,6 +986,13 @@ data = {"tasks":[{"t":"学习Python","done":True}], "notes":["复习第6阶段"]
 print(json.dumps(data, ensure_ascii=False))`,
           type: 'advanced'
         }
+      ],
+      selfQuiz: [
+        { id: 'q6-10-1', type: 'single', question: '任务列表更适合哪种数据结构存储？', options: ['list','set','int'], answer: 'list', explanation: '有序集合便于管理' },
+        { id: 'q6-10-2', type: 'single', question: '完成任务的方法名更推荐？', options: ['do','complete_task','run'], answer: 'complete_task', explanation: '语义清晰' },
+        { id: 'q6-10-3', type: 'judge', question: '天气信息在示例中为模拟数据', answer: true, explanation: '未实际调用外部 API' },
+        { id: 'q6-10-4', type: 'single', question: '统计汇总中完成率计算需注意？', options: ['分母为0','整数除法','多线程竞争'], answer: '分母为0', explanation: '避免除零错误' },
+        { id: 'q6-10-5', type: 'judge', question: '统一日志/配置有助于大项目维护', answer: true, explanation: '工程化基础' }
       ],
       summary: '综合项目需要整合多个技术栈，注重代码结构、错误处理和用户体验'
     }
