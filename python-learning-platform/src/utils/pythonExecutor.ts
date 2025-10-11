@@ -10,9 +10,15 @@ export class PythonExecutor {
 
     // 多源回退加载 Pyodide（优先本地，其次多个 CDN）
     // 根据部署的 BASE_URL 构造本地 Pyodide 目录，并支持环境开关强制本地
-    const baseUrl: string = (typeof import !== 'undefined' && (import.meta as any)?.env?.BASE_URL) || '/'
-    const localBase = `${baseUrl.replace(/\\/+$/, '')}/pyodide/`
-    const forceLocal = (typeof import !== 'undefined' && (import.meta as any)?.env?.VITE_PYODIDE_LOCAL) === 'true'
+    // 读取 Vite 环境变量（在非 Vite/SSR 环境容错）
+    let baseUrl: string = '/'
+    let forceLocal = false
+    try {
+      const env = (import.meta as any)?.env || {}
+      baseUrl = (env.BASE_URL as string) || '/'
+      forceLocal = env.VITE_PYODIDE_LOCAL === 'true'
+    } catch {}
+    const localBase = `${baseUrl.replace(/\/+$/, '')}/pyodide/`
 
     // CDN 回退列表（固定到 0.28.3 full/ 路径）
     const cdnCandidates = [
