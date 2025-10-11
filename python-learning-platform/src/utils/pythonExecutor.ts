@@ -29,8 +29,19 @@ export class PythonExecutor {
     // 预检本地资源是否存在，避免请求 404 返回 HTML 造成二次错误
     const localAvailable = async (): Promise<boolean> => {
       try {
-        const res = await fetch(`${localBase}pyodide.json`, { method: 'HEAD' })
-        return res.ok
+        const res = await fetch(`${localBase}pyodide.json`, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+          // 避免缓存导致的错误类型命中
+          cache: 'no-store' as RequestCache
+        })
+        if (!res.ok) return false
+        const ct = (res.headers.get('content-type') || '').toLowerCase()
+        if (!ct.includes('application/json')) return false
+        // 尝试解析，确保不是返回的 HTML
+        const data = await res.json().catch(() => null)
+        if (!data || typeof data !== 'object') return false
+        return true
       } catch {
         return false
       }
