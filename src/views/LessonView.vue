@@ -291,7 +291,7 @@ import {
   Check 
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { courses, type Lesson, type Exercise } from '@/data/courses'
+import { courses, type Lesson, type Exercise, type Stage } from '@/data/courses'
 import { pythonExecutor } from '@/utils/pythonExecutor'
 
 const route = useRoute()
@@ -318,7 +318,7 @@ const outputContainer = ref<HTMLElement>()
 
 // 当前课程数据
 const currentLesson = ref<Lesson | null>(null)
-const currentStage = ref<any>(null)
+const currentStage = ref<Stage | null>(null)
 
 // 计算属性
 const currentExercises = computed(() => {

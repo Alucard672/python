@@ -212,7 +212,8 @@ import {
   Collection, 
   ChatDotRound 
 } from '@element-plus/icons-vue'
-import { courses, type Lesson } from '@/data/courses'
+import { ElMessage } from 'element-plus'
+import { courses, type Lesson, type Stage } from '@/data/courses'
 
 const router = useRouter()
 
@@ -285,20 +286,28 @@ const viewProgress = () => {
   console.log('查看进度')
 }
 
-const startStage = (stage: any) => {
+const startStage = (stage: Stage) => {
   const firstLesson = stage.lessons[0]
   if (firstLesson) {
     router.push(`/lesson/${firstLesson.id}`)
   }
 }
 
-const continueStage = (stage: any) => {
-  // 找到第一个未完成的课程
-  const nextLesson = stage.lessons.find((lesson: Lesson) => 
+const continueStage = (stage: Stage) => {
+  // 空数组保护
+  if (!stage.lessons || stage.lessons.length === 0) {
+    ElMessage.warning('该阶段暂无课程')
+    return
+  }
+  // 找到第一个未完成的课程，否则回退到第一课
+  const next = stage.lessons.find((lesson: Lesson) => 
     !completedLessons.value.has(lesson.id)
-  ) || stage.lessons[0]
-  
-  router.push(`/lesson/${nextLesson.id}`)
+  ) ?? stage.lessons[0]
+  if (!next) {
+    ElMessage.info('该阶段课程已全部完成')
+    return
+  }
+  router.push(`/lesson/${next.id}`)
 }
 
 const goToLesson = (lessonId: string) => {

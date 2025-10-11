@@ -69,9 +69,9 @@ const convertStageFormat = (stage: IStage): Stage => {
       objective: lesson.objective || '',
       analogy: lesson.analogy || '',
       codeExample: lesson.codeExample || '',
-      originalExercises: (lesson.originalExercises as any[]) || [],
-      extendedExercises: (lesson.extendedExercises as any[]) || [],
-      selfQuiz: (lesson as any).selfQuiz || [],
+      originalExercises: Array.isArray(lesson.originalExercises) ? (lesson.originalExercises as Exercise[]) : [],
+      extendedExercises: Array.isArray(lesson.extendedExercises) ? (lesson.extendedExercises as Exercise[]) : [],
+      selfQuiz: Array.isArray((lesson as any).selfQuiz) ? (lesson as any).selfQuiz : undefined,
       summary: (lesson.content?.split('\n').slice(-1)[0]) ?? '本课程总结'
     }))
   }
